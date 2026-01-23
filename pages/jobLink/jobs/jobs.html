@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Listings</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <header class="topbar">
+        <h2>Find Your Next Job</h2>
+    </header>
+
+    <div class="container">
+
+        <!-- Search & Filters -->
+        <div class="filters">
+
+            <input type="text" id="searchInput" placeholder="Search job title..." />
+
+            <select id="locationFilter">
+                <option value="">All Locations</option>
+                <option value="Cameroon">Cameroon</option>
+                <option value="Remote">Remote</option>
+                <option value="Nigeria">Nigeria</option>
+                <option value="Ghana">Ghana</option>
+            </select>
+
+            <select id="experienceFilter">
+                <option value="">Experience</option>
+                <option value="No Experience">No Experience</option>
+                <option value="Entry Level">Entry Level</option>
+                <option value="Intermediate">Intermediate</option>
+            </select>
+
+            <select id="typeFilter">
+                <option value="">Job Type</option>
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Contract">Contract</option>
+                <option value="Internship">Internship</option>
+            </select>
+
+            <button id="filterBtn">Filter</button>
+
+        </div>
+
+        <!-- Jobs List -->
+        <div id="jobList" class="job-list"></div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Freelance Projects</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <header class="topbar">
+        <h2>Find Freelance Projects</h2>
+    </header>
+
+    <div class="container">
+
+        <!-- Search + Filters -->
+        <div class="filters">
+
+            <input type="text" id="searchInput" placeholder="Search project title or skills..." />
+
+            <select id="skillFilter">
+                <option value="">All Skills</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Graphic Design">Graphic Design</option>
+                <option value="Writing">Writing</option>
+                <option value="Data Entry">Data Entry</option>
+                <option value="Digital Marketing">Digital Marketing</option>
+            </select>
+
+            <select id="budgetFilter">
+                <option value="">Budget</option>
+                <option value="Low">Below $50</option>
+                <option value="Medium">$50 - $200</option>
+                <option value="High">Above $200</option>
+            </select>
+
+            <select id="experienceFilter">
+                <option value="">Experience Level</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Expert">Expert</option>
+            </select>
+
+            <button id="filterBtn">Filter</button>
+
+        </div>
+
+        <!-- Projects List -->
+        <div id="projectList" class="project-list"></div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

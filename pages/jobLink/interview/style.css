@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f7fa;
+}
+
+.header {
+    background: #009688;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-size: 22px;
+}
+
+.container {
+    max-width: 500px;
+    margin: 30px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.instructions {
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: #555;
+}
+
+.schedule-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.schedule-form label {
+    font-weight: bold;
+    color: #333;
+}
+
+.schedule-form input,
+.schedule-form select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.schedule-form button {
+    padding: 12px;
+    border: none;
+    background: #009688;
+    color: white;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.schedule-form button:hover {
+    background: #00796b;
+}
+
+.confirmation {
+    margin-top: 20px;
+    padding: 15px;
+    background: #dff0d8;
+    border: 1px solid #a3d3a1;
+    border-radius: 6px;
+    color: #3c763d;
+    display: none;
+}

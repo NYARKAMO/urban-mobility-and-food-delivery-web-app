@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2 class="logo">JobHub</h2>
+
+            <ul class="menu">
+                <li class="active">Dashboard</li>
+                <li>Jobs</li>
+                <li>Freelance</li>
+                <li>Internships</li>
+                <li>Training</li>
+                <li>Chatbot</li>
+                <li>Interviews</li>
+                <li>Settings</li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+
+            <!-- Top Bar -->
+            <header class="topbar">
+                <h1>Welcome, <span id="userName">User</span></h1>
+                <button class="logout-btn">Logout</button>
+            </header>
+
+            <!-- Overview Cards -->
+            <div class="cards">
+
+                <div class="card">
+                    <h3>Saved Jobs</h3>
+                    <p id="savedJobs">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Jobs Applied</h3>
+                    <p id="appliedJobs">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Freelance Projects</h3>
+                    <p id="freelanceCount">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Internships</h3>
+                    <p id="internshipCount">0</p>
+                </div>
+
+            </div>
+
+            <!-- Recommendations Section -->
+            <section class="recommendations">
+                <h2>Recommended For You</h2>
+
+                <div class="items">
+
+                    <div class="item">
+                        <h3>Junior Web Developer</h3>
+                        <p>No experience required — Training included.</p>
+                        <button>View</button>
+                    </div>
+
+                    <div class="item">
+                        <h3>Graphic Design Intern</h3>
+                        <p>Work remotely and build your portfolio.</p>
+                        <button>View</button>
+                    </div>
+
+                    <div class="item">
+                        <h3>Freelance Writer</h3>
+                        <p>Work at your own schedule. Paid per article.</p>
+                        <button>View</button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
