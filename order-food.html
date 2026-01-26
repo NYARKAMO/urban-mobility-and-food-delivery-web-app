@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Food - SwiftRide</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/order-food.css">
+</head>
+<body>
+    <!-- Side Navigation -->
+    <div class="sidenav" id="mySidenav">
+        <div class="sidenav-header">
+            <h4><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span></h4>
+            <button class="closebtn" onclick="closeNav()">&times;</button>
+        </div>
+
+        <div class="sidenav-user">
+            <img src="nadine.jpeg" alt="User Avatar" class="sidenav-avatar">
+            <div>
+                <h5>Nadine Patricia</h5>
+                <p>nadine@mail.com</p>
+            </div>
+        </div>
+
+        <div class="sidenav-menu">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="book-ride.html"><i class="fa-solid fa-car"></i> Book Ride</a>
+            <a href="order-food.html" class="active"><i class="fa-solid fa-burger"></i> Order Food</a>
+            <a href="#"><i class="fa-solid fa-user"></i> Profile</a>
+
+            <hr>
+
+            <a href="#"><i class="fa-solid fa-wallet"></i> Wallet</a>
+            <a href="#"><i class="fa-solid fa-gift"></i> Rewards</a>
+            <a href="#"><i class="fa-solid fa-clock"></i> Order History</a>
+            <a href="#"><i class="fa-solid fa-ticket"></i> Promo Codes</a>
+
+            <hr>
+
+            <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+            <a href="#"><i class="fa-solid fa-headset"></i> Help & Support</a>
+            <a href="#" class="logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+    </div>
+
+    <!-- Top Bar with Menu Toggle -->
+    <div class="topbar">
+        <div style="display: flex; align-items: center;">
+            <button class="menu-toggle" onclick="openNav()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h5 class="topbar-title">Order <span style="color: #ec1304;">Food</span></h5>
+        </div>
+        <div class="topbar-actions">
+            <button class="topbar-btn"><i class="fa-solid fa-bell"></i></button>
+            <button class="topbar-btn cart-btn" id="cartBtn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Restaurant Selection -->
+        <div class="restaurant-section">
+            <h2>Choose a Restaurant</h2>
+            <div class="restaurant-grid">
+                <div class="restaurant-card active" data-restaurant="italian">
+                    <img src="images.jpeg" alt="Italian Kitchen" class="restaurant-image">
+                    <div class="restaurant-info">
+                        <h3>Italian Kitchen</h3>
+                        <p>Authentic Italian cuisine</p>
+                        <div class="restaurant-meta">
+                            <span class="rating"><i class="fa-solid fa-star"></i> 4.5</span>
+                            <span class="delivery-time">25-35 min</span>
+                            <span class="delivery-fee">500 XAF</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="restaurant-card" data-restaurant="chinese">
+                    <img src="images (4).jpeg" alt="Golden Dragon" class="restaurant-image">
+                    <div class="restaurant-info">
+                        <h3>Golden Dragon</h3>
+                        <p>Traditional Chinese dishes</p>
+                        <div class="restaurant-meta">
+                            <span class="rating"><i class="fa-solid fa-star"></i> 4.3</span>
+                            <span class="delivery-time">20-30 min</span>
+                            <span class="delivery-fee">400 XAF</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="restaurant-card" data-restaurant="burger">
+                    <img src="images (27).jpeg" alt="Burger Palace" class="restaurant-image">
+                    <div class="restaurant-info">
+                        <h3>Burger Palace</h3>
+                        <p>Juicy burgers and fries</p>
+                        <div class="restaurant-meta">
+                            <span class="rating"><i class="fa-solid fa-star"></i> 4.7</span>
+                            <span class="delivery-time">15-25 min</span>
+                            <span class="delivery-fee">300 XAF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Section -->
+        <div class="menu-section">
+            <h2>Menu</h2>
+            <div class="menu-categories">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="pizza">Pizza</button>
+                <button class="category-btn" data-category="pasta">Pasta</button>
+                <button class="category-btn" data-category="salads">Salads</button>
+            </div>
+
+            <div class="menu-items" id="menuItems">
+                <!-- Italian Kitchen Menu -->
+                <div class="menu-item" data-category="pizza" data-restaurant="italian">
+                    <img src="images.jpeg" alt="Margherita Pizza" class="menu-image">
+                    <div class="menu-info">
+                        <h4>Margherita Pizza</h4>
+                        <p>Fresh tomato sauce, mozzarella, basil</p>
+                        <span class="price">8500 XAF</span>
+                    </div>
+                    <button class="add-to-cart-btn" data-item="margherita-pizza" data-price="8500">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+
+                <div class="menu-item" data-category="pizza" data-restaurant="italian">
+                    <img src="images (4).jpeg" alt="Pepperoni Pizza" class="menu-image">
+                    <div class="menu-info">
+                        <h4>Pepperoni Pizza</h4>
+                        <p>Tomato sauce, mozzarella, pepperoni</p>
+                        <span class="price">9500 XAF</span>
+                    </div>
+                    <button class="add-to-cart-btn" data-item="pepperoni-pizza" data-price="9500">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+
+                <div class="menu-item" data-category="pasta" data-restaurant="italian">
+                    <img src="images (27).jpeg" alt="Spaghetti Carbonara" class="menu-image">
+                    <div class="menu-info">
+                        <h4>Spaghetti Carbonara</h4>
+                        <p>Creamy sauce with pancetta and parmesan</p>
+                        <span class="price">7800 XAF</span>
+                    </div>
+                    <button class="add-to-cart-btn" data-item="spaghetti-carbonara" data-price="7800">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+
+                <div class="menu-item" data-category="salads" data-restaurant="italian">
+                    <img src="images.jpeg" alt="Caesar Salad" class="menu-image">
+                    <div class="menu-info">
+                        <h4>Caesar Salad</h4>
+                        <p>Romaine lettuce, croutons, parmesan</p>
+                        <span class="price">5500 XAF</span>
+                    </div>
+                    <button class="add-to-cart-btn" data-item="caesar-salad" data-price="5500">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+
+                <!-- Chinese Restaurant Menu -->
+                <div class="menu-item chinese-menu" data-category="all" data-restaurant="chinese" style="display: none;">
+                    <img src="images (4).jpeg" alt="Sweet and Sour Chicken" class="menu-image">
+                    <div class="menu-info">
+                        <h4>Sweet and Sour Chicken</h4>
+                        <p>Crispy chicken with sweet and sour sauce</p>
+                        <span class="price">7200 XAF</span>
+                    </div>
+                    <button class="add-to-cart-btn" data-item="sweet-sour-chicken" data-price="7200">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+
+                <div class="menu-item chinese-menu" data-category="all" data-restaurant="chinese" style="display: none;">
+                    <img src="images (27).jpeg" alt="Fried Rice" class="menu-image">
+                    <div class="menu-info">
+                        <h4>Vegetable Fried Rice</h4>
+                        <p>Mixed vegetables with steamed rice</p>
+                        <span class="price">4800 XAF</span>
+                    </div>
+                    <button class="add-to-cart-btn" data-item="fried-rice" data-price="4800">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+
+                <!-- Burger Restaurant Menu -->
+                <div class="menu-item burger-menu" data-category="all" data-restaurant="burger" style="display: none;">
+                    <img src="images (27).jpeg" alt="Classic Burger" class="menu-image">
+                    <div class="menu-info">
+                        <h4>Classic Burger</h4>
+                        <p>Beef patty, lettuce, tomato, cheese</p>
+                        <span class="price">6500 XAF</span>
+                    </div>
+                    <button class="add-to-cart-btn" data-item="classic-burger" data-price="6500">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+
+                <div class="menu-item burger-menu" data-category="all" data-restaurant="burger" style="display: none;">
+                    <img src="images.jpeg" alt="Chicken Nuggets" class="menu-image">
+                    <div class="menu-info">
+                        <h4>Chicken Nuggets (12pcs)</h4>
+                        <p>Crispy chicken nuggets with dipping sauce</p>
+                        <span class="price">5800 XAF</span>
+                    </div>
+                    <button class="add-to-cart-btn" data-item="chicken-nuggets" data-price="5800">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Subtotal:</span>
+                <span id="cartSubtotal">0 XAF</span>
+            </div>
+            <div class="cart-total">
+                <span>Delivery Fee:</span>
+                <span id="cartDelivery">500 XAF</span>
+            </div>
+            <div class="cart-total total">
+                <span>Total:</span>
+                <span id="cartTotal">0 XAF</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn" disabled>Place Order</button>
+        </div>
+    </div>
+
+    <!-- Order Confirmation Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Confirm Your Order</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="delivery-details">
+                    <h4>Delivery Details</h4>
+                    <div class="form-group">
+                        <label for="deliveryAddress">Delivery Address</label>
+                        <input type="text" id="deliveryAddress" placeholder="Enter your delivery address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="deliveryInstructions">Delivery Instructions (Optional)</label>
+                        <textarea id="deliveryInstructions" placeholder="Any special instructions for delivery..." rows="2"></textarea>
+                    </div>
+                </div>
+
+                <div class="payment-section">
+                    <h4>Payment Method</h4>
+                    <div class="payment-options">
+                        <div class="payment-option active">
+                            <input type="radio" name="orderPayment" value="cash" checked>
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                            <span>Cash on Delivery</span>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" name="orderPayment" value="card">
+                            <i class="fa-solid fa-credit-card"></i>
+                            <span>Credit Card</span>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" name="orderPayment" value="wallet">
+                            <i class="fa-solid fa-wallet"></i>
+                            <span>Wallet</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-summary">
+                    <h4>Order Summary</h4>
+                    <div id="orderSummaryItems"></div>
+                    <div class="order-total">
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span id="orderSubtotal">0 XAF</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Delivery Fee:</span>
+                            <span id="orderDelivery">500 XAF</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total:</span>
+                            <span id="orderTotal">0 XAF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="confirm-order-btn" id="confirmOrderBtn">Confirm Order</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="JS/order-food.js"></script>
+</body>
+</html> 

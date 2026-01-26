@@ -16,6 +16,31 @@ navItems.forEach(item => {
   });
 });
 
+// Side Navigation functions
+function openNav() {
+    const sidenav = document.getElementById("mySidenav");
+    sidenav.style.width = "280px";
+    sidenav.classList.add("sidenav-open");
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNav() {
+    const sidenav = document.getElementById("mySidenav");
+    sidenav.style.width = "0";
+    sidenav.classList.remove("sidenav-open");
+    document.body.style.backgroundColor = "#f3f3f3";
+}
+
+// Close nav when clicking outside
+document.addEventListener('click', function(event) {
+    const sidenav = document.getElementById("mySidenav");
+    const menuToggle = document.querySelector('.menu-toggle');
+
+    if (sidenav && menuToggle && !sidenav.contains(event.target) && !menuToggle.contains(event.target) && (sidenav.style.width === "280px" || sidenav.classList.contains("sidenav-open"))) {
+        closeNav();
+    }
+});
+
 // Home toggle buttons (Ride Map / Restaurants)
 const homeButtons = document.querySelectorAll(".home-toggle button");
 const mapContent = document.getElementById("MapContent");
