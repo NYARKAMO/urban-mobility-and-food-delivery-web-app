@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - SwiftRide</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+    <!-- Side Navigation -->
+    <div class="sidenav" id="mySidenav">
+        <div class="sidenav-header">
+            <h4><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span></h4>
+            <button class="closebtn" onclick="closeNav()">&times;</button>
+        </div>
+
+        <div class="sidenav-user">
+            <img src="nadine.jpeg" alt="User Avatar" class="sidenav-avatar">
+            <div>
+                <h5>Nadine Patricia</h5>
+                <p>nadine@mail.com</p>
+            </div>
+        </div>
+
+        <div class="sidenav-menu">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="book-ride.html"><i class="fa-solid fa-car"></i> My Rides</a>
+            <a href="order-food.html"><i class="fa-solid fa-burger"></i> Food Orders</a>
+            <a href="profile.html" class="active"><i class="fa-solid fa-user"></i> Profile</a>
+
+            <hr>
+
+            <a href="wallet.html"><i class="fa-solid fa-wallet"></i> Wallet</a>
+            <a href="rewards.html"><i class="fa-solid fa-gift"></i> Rewards</a>
+            <a href="order-history.html"><i class="fa-solid fa-clock"></i> Order History</a>
+            <a href="promo-codes.html"><i class="fa-solid fa-ticket"></i> Promo Codes</a>
+
+            <hr>
+
+            <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+            <a href="help-support.html"><i class="fa-solid fa-headset"></i> Help & Support</a>
+            <a href="#" class="logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+    </div>
+
+    <!-- Top Bar with Menu Toggle -->
+    <div class="topbar">
+        <div style="display: flex; align-items: center;">
+            <button class="menu-toggle" onclick="openNav()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h5 class="topbar-title">My <span style="color: #ec1304;">Profile</span></h5>
+        </div>
+        <div class="topbar-actions">
+            <button class="topbar-btn"><i class="fa-solid fa-bell"></i></button>
+            <button class="topbar-btn"><i class="fa-solid fa-cart-shopping"></i></button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="profile-container">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div class="profile-avatar-section">
+                    <div class="avatar-container">
+                        <img src="nadine.jpeg" alt="Profile Picture" class="profile-avatar">
+                        <button class="edit-avatar-btn">
+                            <i class="fa-solid fa-camera"></i>
+                        </button>
+                    </div>
+                    <div class="profile-info">
+                        <h2>Nadine Patricia</h2>
+                        <p class="member-since">Member since January 2024</p>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <span>4.7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Stats -->
+            <div class="profile-stats">
+                <div class="stat-card">
+                    <i class="fa-solid fa-car"></i>
+                    <div class="stat-info">
+                        <h3>127</h3>
+                        <p>Total Rides</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-burger"></i>
+                    <div class="stat-info">
+                        <h3>89</h3>
+                        <p>Food Orders</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-clock"></i>
+                    <div class="stat-info">
+                        <h3>24</h3>
+                        <p>Hours Saved</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-coins"></i>
+                    <div class="stat-info">
+                        <h3>2,450</h3>
+                        <p>Points Earned</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Sections -->
+            <div class="profile-sections">
+                <!-- Personal Information -->
+                <div class="profile-section">
+                    <h3><i class="fa-solid fa-user"></i> Personal Information</h3>
+                    <form class="profile-form" id="personalForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" value="Nadine" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" value="Patricia" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" value="nadine@mail.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" value="+237 6XX XXX XXX" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateOfBirth">Date of Birth</label>
+                            <input type="date" id="dateOfBirth" name="dateOfBirth" value="1995-06-15">
+                        </div>
+                        <button type="submit" class="save-btn">Save Changes</button>
+                    </form>
+                </div>
+
+                <!-- Ride Preferences -->
+                <div class="profile-section">
+                    <h3><i class="fa-solid fa-car"></i> Ride Preferences</h3>
+                    <div class="preferences-grid">
+                        <div class="preference-item">
+                            <label class="preference-label">
+                                <input type="checkbox" checked>
+                                <span class="checkmark"></span>
+                                Preferred vehicle type
+                            </label>
+                            <select class="preference-select">
+                                <option value="standard" selected>Standard Ride</option>
+                                <option value="premium">Premium Ride</option>
+                                <option value="xl">XL Ride</option>
+                            </select>
+                        </div>
+                        <div class="preference-item">
+                            <label class="preference-label">
+                                <input type="checkbox" checked>
+                                <span class="checkmark"></span>
+                                Allow ride sharing
+                            </label>
+                        </div>
+                        <div class="preference-item">
+                            <label class="preference-label">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Child seat required
+                            </label>
+                        </div>
+                        <div class="preference-item">
+                            <label class="preference-label">
+                                <input type="checkbox" checked>
+                                <span class="checkmark"></span>
+                                Contactless payment
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Favorite Locations -->
+                <div class="profile-section">
+                    <h3><i class="fa-solid fa-map-marker-alt"></i> Favorite Locations</h3>
+                    <div class="locations-list">
+                        <div class="location-item">
+                            <div class="location-info">
+                                <h4>Home</h4>
+                                <p>123 Main Street, Yaoundé</p>
+                            </div>
+                            <div class="location-actions">
+                                <button class="edit-btn"><i class="fa-solid fa-edit"></i></button>
+                                <button class="delete-btn"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <div class="location-info">
+                                <h4>Work</h4>
+                                <p>456 Business Avenue, Yaoundé</p>
+                            </div>
+                            <div class="location-actions">
+                                <button class="edit-btn"><i class="fa-solid fa-edit"></i></button>
+                                <button class="delete-btn"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <button class="add-location-btn">
+                            <i class="fa-solid fa-plus"></i> Add New Location
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Emergency Contacts -->
+                <div class="profile-section">
+                    <h3><i class="fa-solid fa-phone"></i> Emergency Contacts</h3>
+                    <div class="emergency-contacts">
+                        <div class="contact-item">
+                            <div class="contact-info">
+                                <h4>John Doe</h4>
+                                <p>Brother - +237 6XX XXX XXX</p>
+                            </div>
+                            <div class="contact-actions">
+                                <button class="edit-btn"><i class="fa-solid fa-edit"></i></button>
+                                <button class="delete-btn"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-info">
+                                <h4>Jane Smith</h4>
+                                <p>Friend - +237 6XX XXX XXX</p>
+                            </div>
+                            <div class="contact-actions">
+                                <button class="edit-btn"><i class="fa-solid fa-edit"></i></button>
+                                <button class="delete-btn"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <button class="add-contact-btn">
+                            <i class="fa-solid fa-plus"></i> Add Emergency Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="JS/profile.js"></script>
+</body>
+</html>

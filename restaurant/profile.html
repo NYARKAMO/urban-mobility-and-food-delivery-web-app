@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Profile - SwiftRide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/restaurant.css">
+</head>
+<body>
+    <!-- Restaurant Header -->
+    <div class="restaurant-header">
+        <div class="restaurant-header-left">
+            <button class="menu-toggle" onclick="toggleRestaurantSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-utensils"></i> Swift<span style="color: #ff6f00;">Ride</span> Restaurant</h2>
+        </div>
+        <div class="restaurant-header-right">
+            <div class="restaurant-status">
+                <span class="status-indicator"></span>
+                <span id="restaurantStatus">Open</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Restaurant Sidebar -->
+    <div class="restaurant-sidebar" id="restaurantSidebar">
+        <nav class="restaurant-nav">
+            <a href="restaurant-dashboard.html">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="restaurant-orders.html">
+                <i class="fa-solid fa-utensils"></i> Orders
+            </a>
+            <a href="restaurant-menu.html">
+                <i class="fa-solid fa-list"></i> Menu
+            </a>
+            <a href="restaurant-earnings.html">
+                <i class="fa-solid fa-dollar-sign"></i> Earnings
+            </a>
+            <a href="restaurant-profile.html" class="active">
+                <i class="fa-solid fa-store"></i> Restaurant Info
+            </a>
+            <a href="restaurant-analytics.html">
+                <i class="fa-solid fa-chart-bar"></i> Analytics
+            </a>
+            <a href="restaurant-settings.html">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="restaurantLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="restaurant-content">
+        <div class="content-area">
+            <div class="page-header">
+                <h1><i class="fa-solid fa-store"></i> Restaurant Information</h1>
+            </div>
+
+            <!-- Restaurant Basic Info -->
+            <div class="content-card">
+                <h2>Basic Information</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Restaurant Name</label>
+                        <input type="text" value="Mario's Pizza Place" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Owner Name</label>
+                        <input type="text" value="Mario Rossi" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Cuisine Type</label>
+                        <select style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                            <option selected>Italian</option>
+                            <option>Chinese</option>
+                            <option>Indian</option>
+                            <option>Mexican</option>
+                            <option>American</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Phone Number</label>
+                        <input type="tel" value="(555) 123-4567" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email Address</label>
+                        <input type="email" value="restaurant@swiftride.com" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">License Number</label>
+                        <input type="text" value="REST-2024-001234" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location Information -->
+            <div class="content-card">
+                <h2>Location Information</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Street Address</label>
+                        <input type="text" value="123 Main Street" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">City</label>
+                        <input type="text" value="New York" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">State/Province</label>
+                        <input type="text" value="NY" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">ZIP Code</label>
+                        <input type="text" value="10001" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Hours -->
+            <div class="content-card">
+                <h2>Business Hours</h2>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #eee;">
+                            <td style="padding: 0.75rem; font-weight: 500;">Monday</td>
+                            <td style="padding: 0.75rem;">
+                                <input type="time" value="10:00" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-right: 0.5rem;">
+                                <span>to</span>
+                                <input type="time" value="23:00" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-left: 0.5rem;">
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #eee;">
+                            <td style="padding: 0.75rem; font-weight: 500;">Tuesday</td>
+                            <td style="padding: 0.75rem;">
+                                <input type="time" value="10:00" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-right: 0.5rem;">
+                                <span>to</span>
+                                <input type="time" value="23:00" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-left: 0.5rem;">
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #eee;">
+                            <td style="padding: 0.75rem; font-weight: 500;">Wednesday</td>
+                            <td style="padding: 0.75rem;">
+                                <input type="time" value="10:00" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-right: 0.5rem;">
+                                <span>to</span>
+                                <input type="time" value="23:00" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-left: 0.5rem;">
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #eee;">
+                            <td style="padding: 0.75rem; font-weight: 500;">Thursday</td>
+                            <td style="padding: 0.75rem;">
+                                <input type="time" value="10:00" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-right: 0.5rem;">
+                                <span>to</span>
+                                <input type="time" value="23:00" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-left: 0.5rem;">
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #eee;">
+                            <td style="padding: 0.75rem; font-weight: 500;">Friday</td>
+                            <td style="padding: 0.75rem;">
+                                <input type="time" value="10:00" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-right: 0.5rem;">
+                                <span>to</span>
+                                <input type="time" value="00:00" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-left: 0.5rem;">
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #eee;">
+                            <td style="padding: 0.75rem; font-weight: 500;">Saturday</td>
+                            <td style="padding: 0.75rem;">
+                                <input type="time" value="10:00" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-right: 0.5rem;">
+                                <span>to</span>
+                                <input type="time" value="00:00" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-left: 0.5rem;">
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #eee;">
+                            <td style="padding: 0.75rem; font-weight: 500;">Sunday</td>
+                            <td style="padding: 0.75rem;">
+                                <input type="time" value="11:00" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-right: 0.5rem;">
+                                <span>to</span>
+                                <input type="time" value="23:00" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-left: 0.5rem;">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Documents -->
+            <div class="content-card">
+                <h2>Verification Documents</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Document Type</th>
+                            <th>Status</th>
+                            <th>Upload Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Business License</td>
+                            <td><span class="status-badge completed">Verified</span></td>
+                            <td>Jan 15, 2024</td>
+                            <td><button class="btn-small"><i class="fa-solid fa-download"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>Food Handler Certificate</td>
+                            <td><span class="status-badge completed">Verified</span></td>
+                            <td>Jan 15, 2024</td>
+                            <td><button class="btn-small"><i class="fa-solid fa-download"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>Health Inspection Report</td>
+                            <td><span class="status-badge completed">Verified</span></td>
+                            <td>Feb 1, 2024</td>
+                            <td><button class="btn-small"><i class="fa-solid fa-download"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="btn-primary" style="margin-top: 2rem;" onclick="saveRestaurantInfo()">
+                <i class="fa-solid fa-save"></i> Save Changes
+            </button>
+        </div>
+    </div>
+
+    <script src="../JS/restaurant.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            checkRestaurantAuth();
+        });
+
+        function saveRestaurantInfo() {
+            alert('Restaurant information updated successfully!');
+        }
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>

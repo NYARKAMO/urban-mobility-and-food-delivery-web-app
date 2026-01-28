@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become a Restaurant Partner - SwiftRide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <style>
+        .restaurant-signup-container {
+            background: linear-gradient(135deg, #ff6f00 0%, #e65100 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .restaurant-signup-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 600px;
+            width: 100%;
+            padding: 2.5rem;
+        }
+
+        .restaurant-signup-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .restaurant-signup-header h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .restaurant-signup-header p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .benefit-item i {
+            color: #ff6f00;
+            font-size: 1.3rem;
+            margin-top: 0.3rem;
+            min-width: 24px;
+        }
+
+        .benefit-item h4 {
+            margin: 0 0 0.3rem 0;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .benefit-item p {
+            margin: 0;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h3 {
+            color: #333;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .form-section h3 i {
+            color: #ff6f00;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-list {
+                grid-template-columns: 1fr;
+            }
+
+            .restaurant-signup-card {
+                padding: 1.5rem;
+            }
+        }
+
+        .requirements-list {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff6f00;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+        }
+
+        .requirements-list h4 {
+            color: #ff6f00;
+            margin: 0 0 0.75rem 0;
+        }
+
+        .requirements-list ul {
+            margin: 0;
+            padding-left: 1.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .requirements-list li {
+            margin-bottom: 0.4rem;
+        }
+
+        .signup-action {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .signup-action button {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .signup-action .btn-primary {
+            background: linear-gradient(135deg, #ff6f00 0%, #e65100 100%);
+            color: white;
+        }
+
+        .signup-action .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 111, 0, 0.3);
+        }
+
+        .signup-action .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .signup-action .btn-secondary:hover {
+            background: #e8e8e8;
+        }
+    </style>
+</head>
+<body>
+    <div class="restaurant-signup-container">
+        <div class="restaurant-signup-card">
+            <!-- Header -->
+            <div class="restaurant-signup-header">
+                <h1><i class="fa-solid fa-utensils"></i> Become a Restaurant Partner</h1>
+                <p>Grow your restaurant with SwiftRide's delivery platform</p>
+            </div>
+
+            <!-- Benefits -->
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <div>
+                        <h4>Increase Sales</h4>
+                        <p>Reach more customers</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-network-wired"></i>
+                    <div>
+                        <h4>Easy Integration</h4>
+                        <p>Simple setup process</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-wallet"></i>
+                    <div>
+                        <h4>Better Payouts</h4>
+                        <p>Competitive commission rates</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-cogs"></i>
+                    <div>
+                        <h4>Smart Tools</h4>
+                        <p>Manage orders easily</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Requirements -->
+            <div class="requirements-list">
+                <h4><i class="fa-solid fa-check-circle"></i> What We Need</h4>
+                <ul>
+                    <li>Valid business license</li>
+                    <li>Food safety certificate</li>
+                    <li>Restaurant location (must be in our delivery zone)</li>
+                    <li>Business bank account</li>
+                    <li>Valid government-issued ID</li>
+                    <li>Menu ready to upload</li>
+                </ul>
+            </div>
+
+            <!-- Signup Form -->
+            <form id="restaurantSignupForm" class="auth-form">
+                <!-- Owner Information -->
+                <div class="form-section">
+                    <h3><i class="fa-solid fa-user"></i> Owner Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-user"></i>
+                                <input type="text" id="firstName" placeholder="First name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-user"></i>
+                                <input type="text" id="lastName" placeholder="Last name" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" id="email" placeholder="Email address" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-phone"></i>
+                                <input type="tel" id="phone" placeholder="+237 XXX XXX XXX" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurant Information -->
+                <div class="form-section">
+                    <h3><i class="fa-solid fa-utensils"></i> Restaurant Information</h3>
+                    
+                    <div class="form-group">
+                        <label for="restaurantName">Restaurant Name</label>
+                        <div class="input-group">
+                            <i class="fa-solid fa-store"></i>
+                            <input type="text" id="restaurantName" placeholder="e.g., Mario's Pizza Place" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cuisineType">Cuisine Type</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-utensils"></i>
+                                <select id="cuisineType" required>
+                                    <option value="">Select cuisine type</option>
+                                    <option value="italian">Italian</option>
+                                    <option value="chinese">Chinese</option>
+                                    <option value="indian">Indian</option>
+                                    <option value="mexican">Mexican</option>
+                                    <option value="american">American</option>
+                                    <option value="fast-food">Fast Food</option>
+                                    <option value="seafood">Seafood</option>
+                                    <option value="vegetarian">Vegetarian</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="deliveryRadius">Delivery Radius (km)</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-map"></i>
+                                <input type="number" id="deliveryRadius" placeholder="5" min="1" max="50" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location Information -->
+                <div class="form-section">
+                    <h3><i class="fa-solid fa-location-dot"></i> Location</h3>
+                    
+                    <div class="form-group">
+                        <label for="address">Street Address</label>
+                        <div class="input-group">
+                            <i class="fa-solid fa-map-pin"></i>
+                            <input type="text" id="address" placeholder="Street address" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-city"></i>
+                                <input type="text" id="city" placeholder="City" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="postalCode">Postal Code</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="text" id="postalCode" placeholder="Postal code" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Security -->
+                <div class="form-section">
+                    <h3><i class="fa-solid fa-lock"></i> Account Security</h3>
+                    
+                    <div class="form-group">
+                        <label for="password">Create Password</label>
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="password" placeholder="Create a strong password" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms -->
+                <div class="form-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="termsAgree" required>
+                        <span class="checkmark"></span>
+                        I agree to SwiftRide's <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Restaurant Agreement</a>
+                    </label>
+                </div>
+
+                <!-- Actions -->
+                <div class="signup-action">
+                    <button type="button" class="btn-secondary" onclick="window.history.back()">
+                        <i class="fa-solid fa-arrow-left"></i> Cancel
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        <span class="btn-text">Complete Registration</span>
+                        <div class="btn-loader" style="display: none;">
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Login Link -->
+                <p style="text-align: center; margin-top: 1.5rem; color: #666;">
+                    Already a restaurant partner? <a href="restaurant-login.html" style="color: #ff6f00; text-decoration: none; font-weight: 600;">Sign in here</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = input.nextElementSibling.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        document.getElementById('restaurantSignupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const restaurantName = document.getElementById('restaurantName').value;
+            const cuisineType = document.getElementById('cuisineType').value;
+            const deliveryRadius = document.getElementById('deliveryRadius').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const postalCode = document.getElementById('postalCode').value;
+            const termsAgree = document.getElementById('termsAgree').checked;
+
+            // Validation
+            if (!firstName || !lastName || !email || !phone) {
+                alert('Please fill in all owner information fields');
+                return;
+            }
+
+            if (!restaurantName || !cuisineType || !deliveryRadius) {
+                alert('Please fill in all restaurant information');
+                return;
+            }
+
+            if (!address || !city || !postalCode) {
+                alert('Please fill in all location fields');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long');
+                return;
+            }
+
+            if (!termsAgree) {
+                alert('Please agree to the terms and conditions');
+                return;
+            }
+
+            // Show success message
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Registration Successful!';
+            submitBtn.style.background = '#4caf50';
+
+            // Save to localStorage (for demo)
+            const restaurantData = {
+                firstName, lastName, email, phone,
+                restaurantName, cuisineType, deliveryRadius,
+                address, city, postalCode,
+                registrationDate: new Date().toLocaleDateString()
+            };
+            
+            localStorage.setItem('restaurantSignupData', JSON.stringify(restaurantData));
+
+            // Redirect to login
+            setTimeout(() => {
+                window.location.href = 'restaurant-login.html';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

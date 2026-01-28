@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Management - SwiftRide Admin</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../favicon_io/site.webmanifest">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="admin-header-left">
+            <button class="menu-toggle" onclick="toggleAdminSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span> Admin</h2>
+        </div>
+        <div class="admin-header-right">
+            <div class="admin-notifications">
+                <i class="fa-solid fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="admin-user">
+                <img src="../nadine.jpeg" alt="Admin Avatar" class="admin-avatar">
+                <span>Admin User</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Sidebar -->
+    <div class="admin-sidebar" id="adminSidebar">
+        <nav class="admin-nav">
+            <a href="admin-dashboard.html">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="admin-users.html">
+                <i class="fa-solid fa-users"></i> Users
+            </a>
+            <a href="admin-drivers.html" class="active">
+                <i class="fa-solid fa-car"></i> Drivers
+            </a>
+            <a href="admin-rides.html">
+                <i class="fa-solid fa-route"></i> Rides
+            </a>
+            <a href="admin-orders.html">
+                <i class="fa-solid fa-utensils"></i> Orders
+            </a>
+            <a href="admin-restaurants.html">
+                <i class="fa-solid fa-store"></i> Restaurants
+            </a>
+            <a href="admin-analytics.html">
+                <i class="fa-solid fa-chart-bar"></i> Analytics
+            </a>
+            <a href="admin-settings.html">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="adminLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-content">
+        <div class="data-table-container">
+            <div class="table-header">
+                <h3>Driver Management</h3>
+                <div class="search-filter">
+                    <input type="text" class="search-input" placeholder="Search drivers..." id="driverSearch">
+                    <select class="filter-select" id="driverStatusFilter">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="pending">Pending Approval</option>
+                        <option value="suspended">Suspended</option>
+                    </select>
+                    <button class="btn-primary" onclick="addNewDriver()">Add Driver</button>
+                </div>
+            </div>
+
+            <table class="data-table" id="driversTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Vehicle</th>
+                        <th>Status</th>
+                        <th>Rating</th>
+                        <th>Total Rides</th>
+                        <th>Earnings</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>D001</td>
+                        <td>Alex Rodriguez</td>
+                        <td>alex.driver@email.com</td>
+                        <td>+1 234 567 8904</td>
+                        <td>Toyota Camry (ABC-123)</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                        <td>4.8</td>
+                        <td>156</td>
+                        <td>$2,340</td>
+                        <td class="action-buttons">
+                            <button class="btn-secondary" onclick="viewDriver(1)">View</button>
+                            <button class="btn-secondary" onclick="editDriver(1)">Edit</button>
+                            <button class="btn-danger" onclick="suspendDriver(1)">Suspend</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>D002</td>
+                        <td>Sarah Johnson</td>
+                        <td>sarah.driver@email.com</td>
+                        <td>+1 234 567 8905</td>
+                        <td>Honda Civic (XYZ-789)</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                        <td>4.6</td>
+                        <td>98</td>
+                        <td>$1,567</td>
+                        <td class="action-buttons">
+                            <button class="btn-secondary" onclick="viewDriver(2)">View</button>
+                            <button class="btn-secondary" onclick="editDriver(2)">Edit</button>
+                            <button class="btn-danger" onclick="suspendDriver(2)">Suspend</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>D003</td>
+                        <td>Michael Chen</td>
+                        <td>michael.chen@email.com</td>
+                        <td>+1 234 567 8906</td>
+                        <td>Ford Focus (DEF-456)</td>
+                        <td><span class="status-badge status-pending">Pending</span></td>
+                        <td>N/A</td>
+                        <td>0</td>
+                        <td>$0</td>
+                        <td class="action-buttons">
+                            <button class="btn-secondary" onclick="viewDriver(3)">View</button>
+                            <button class="btn-primary" onclick="approveDriver(3)">Approve</button>
+                            <button class="btn-danger" onclick="rejectDriver(3)">Reject</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>D004</td>
+                        <td>Emma Wilson</td>
+                        <td>emma.wilson@email.com</td>
+                        <td>+1 234 567 8907</td>
+                        <td>Nissan Altima (GHI-012)</td>
+                        <td><span class="status-badge status-suspended">Suspended</span></td>
+                        <td>3.2</td>
+                        <td>45</td>
+                        <td>$678</td>
+                        <td class="action-buttons">
+                            <button class="btn-secondary" onclick="viewDriver(4)">View</button>
+                            <button class="btn-secondary" onclick="editDriver(4)">Edit</button>
+                            <button class="btn-secondary" onclick="activateDriver(4)">Activate</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Driver Details Modal -->
+        <div id="driverModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Driver Details</h3>
+                    <span class="close" onclick="closeModal()">&times;</span>
+                </div>
+                <div class="modal-body" id="driverDetails">
+                    <!-- Driver details will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Driver Modal -->
+        <div id="addDriverModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add New Driver</h3>
+                    <span class="close" onclick="closeModal()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form class="admin-form" id="addDriverForm">
+                        <div class="form-group">
+                            <label for="driverFirstName">First Name</label>
+                            <input type="text" id="driverFirstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="driverLastName">Last Name</label>
+                            <input type="text" id="driverLastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="driverEmail">Email</label>
+                            <input type="email" id="driverEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="driverPhone">Phone</label>
+                            <input type="tel" id="driverPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vehicleMake">Vehicle Make</label>
+                            <input type="text" id="vehicleMake" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vehicleModel">Vehicle Model</label>
+                            <input type="text" id="vehicleModel" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="licensePlate">License Plate</label>
+                            <input type="text" id="licensePlate" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+                            <button type="submit" class="btn-primary">Add Driver</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS/admin.js"></script>
+</body>
+</html>

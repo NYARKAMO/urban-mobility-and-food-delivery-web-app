@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards - SwiftRide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/rewards.css">
+</head>
+<body>
+    <!-- Side Navigation -->
+    <div class="sidenav" id="mySidenav">
+        <div class="sidenav-header">
+            <h4><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span></h4>
+            <button class="closebtn" onclick="closeNav()">&times;</button>
+        </div>
+
+        <div class="sidenav-user">
+            <img src="nadine.jpeg" alt="User Avatar" class="sidenav-avatar">
+            <div>
+                <h5>Nadine Patricia</h5>
+                <p>nadine@mail.com</p>
+            </div>
+        </div>
+
+        <div class="sidenav-menu">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="book-ride.html"><i class="fa-solid fa-car"></i> My Rides</a>
+            <a href="order-food.html"><i class="fa-solid fa-burger"></i> Food Orders</a>
+            <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
+
+            <hr>
+
+            <a href="wallet.html"><i class="fa-solid fa-wallet"></i> Wallet</a>
+            <a href="rewards.html" class="active"><i class="fa-solid fa-gift"></i> Rewards</a>
+            <a href="order-history.html"><i class="fa-solid fa-clock"></i> Order History</a>
+            <a href="promo-codes.html"><i class="fa-solid fa-ticket"></i> Promo Codes</a>
+
+            <hr>
+
+            <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+            <a href="help-support.html"><i class="fa-solid fa-headset"></i> Help & Support</a>
+            <a href="#" class="logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+    </div>
+
+    <!-- Top Bar with Menu Toggle -->
+    <div class="topbar">
+        <div style="display: flex; align-items: center;">
+            <button class="menu-toggle" onclick="openNav()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h5 class="topbar-title">My <span style="color: #ec1304;">Rewards</span></h5>
+        </div>
+        <div class="topbar-actions">
+            <button class="topbar-btn"><i class="fa-solid fa-bell"></i></button>
+            <button class="topbar-btn"><i class="fa-solid fa-cart-shopping"></i></button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="rewards-container">
+            <!-- Points Balance Card -->
+            <div class="points-balance-card">
+                <div class="points-header">
+                    <h2>Reward Points</h2>
+                    <i class="fa-solid fa-coins"></i>
+                </div>
+                <div class="points-amount">
+                    <span class="points-number">2,450</span>
+                    <span class="points-label">Points</span>
+                </div>
+                <div class="points-value">
+                    <span>Worth XAF 2,450</span>
+                </div>
+                <div class="points-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 70%"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span>2,450 / 3,500 points to next reward</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Redeem Section -->
+            <div class="quick-redeem">
+                <h3>Quick Redeem</h3>
+                <div class="redeem-options">
+                    <div class="redeem-option" data-points="500" data-value="500">
+                        <div class="option-icon">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                        </div>
+                        <div class="option-info">
+                            <h4>500 XAF Cashback</h4>
+                            <p>500 points</p>
+                        </div>
+                        <button class="redeem-btn">Redeem</button>
+                    </div>
+
+                    <div class="redeem-option" data-points="1000" data-value="1200">
+                        <div class="option-icon">
+                            <i class="fa-solid fa-car"></i>
+                        </div>
+                        <div class="option-info">
+                            <h4>Free Ride</h4>
+                            <p>1,000 points</p>
+                        </div>
+                        <button class="redeem-btn">Redeem</button>
+                    </div>
+
+                    <div class="redeem-option" data-points="750" data-value="900">
+                        <div class="option-icon">
+                            <i class="fa-solid fa-burger"></i>
+                        </div>
+                        <div class="option-info">
+                            <h4>Free Meal</h4>
+                            <p>750 points</p>
+                        </div>
+                        <button class="redeem-btn">Redeem</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rewards Catalog -->
+            <div class="rewards-catalog">
+                <h3>Rewards Catalog</h3>
+                <div class="catalog-tabs">
+                    <button class="tab-btn active" data-tab="all">All</button>
+                    <button class="tab-btn" data-tab="cashback">Cashback</button>
+                    <button class="tab-btn" data-tab="rides">Free Rides</button>
+                    <button class="tab-btn" data-tab="food">Food</button>
+                    <button class="tab-btn" data-tab="premium">Premium</button>
+                </div>
+
+                <div class="catalog-items">
+                    <!-- Cashback Rewards -->
+                    <div class="reward-item" data-category="cashback">
+                        <div class="reward-image">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                        </div>
+                        <div class="reward-info">
+                            <h4>1,000 XAF Cashback</h4>
+                            <p>Get 1,000 XAF credited to your wallet</p>
+                            <div class="reward-points">1,200 points</div>
+                        </div>
+                        <button class="redeem-reward-btn" data-points="1200" data-type="cashback" data-value="1000">Redeem</button>
+                    </div>
+
+                    <div class="reward-item" data-category="cashback">
+                        <div class="reward-image">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                        </div>
+                        <div class="reward-info">
+                            <h4>500 XAF Cashback</h4>
+                            <p>Get 500 XAF credited to your wallet</p>
+                            <div class="reward-points">500 points</div>
+                        </div>
+                        <button class="redeem-reward-btn" data-points="500" data-type="cashback" data-value="500">Redeem</button>
+                    </div>
+
+                    <!-- Free Rides -->
+                    <div class="reward-item" data-category="rides">
+                        <div class="reward-image">
+                            <i class="fa-solid fa-car"></i>
+                        </div>
+                        <div class="reward-info">
+                            <h4>Free Premium Ride</h4>
+                            <p>One free premium ride up to 15km</p>
+                            <div class="reward-points">2,500 points</div>
+                        </div>
+                        <button class="redeem-reward-btn" data-points="2500" data-type="ride" data-value="premium">Redeem</button>
+                    </div>
+
+                    <div class="reward-item" data-category="rides">
+                        <div class="reward-image">
+                            <i class="fa-solid fa-car"></i>
+                        </div>
+                        <div class="reward-info">
+                            <h4>Free Standard Ride</h4>
+                            <p>One free standard ride up to 10km</p>
+                            <div class="reward-points">1,500 points</div>
+                        </div>
+                        <button class="redeem-reward-btn" data-points="1500" data-type="ride" data-value="standard">Redeem</button>
+                    </div>
+
+                    <!-- Food Rewards -->
+                    <div class="reward-item" data-category="food">
+                        <div class="reward-image">
+                            <i class="fa-solid fa-burger"></i>
+                        </div>
+                        <div class="reward-info">
+                            <h4>Free Meal Voucher</h4>
+                            <p>Free meal up to 8,000 XAF at any restaurant</p>
+                            <div class="reward-points">2,000 points</div>
+                        </div>
+                        <button class="redeem-reward-btn" data-points="2000" data-type="food" data-value="8000">Redeem</button>
+                    </div>
+
+                    <div class="reward-item" data-category="food">
+                        <div class="reward-image">
+                            <i class="fa-solid fa-coffee"></i>
+                        </div>
+                        <div class="reward-info">
+                            <h4>Free Coffee</h4>
+                            <p>Free coffee or beverage at partnered cafes</p>
+                            <div class="reward-points">300 points</div>
+                        </div>
+                        <button class="redeem-reward-btn" data-points="300" data-type="food" data-value="coffee">Redeem</button>
+                    </div>
+
+                    <!-- Premium Rewards -->
+                    <div class="reward-item" data-category="premium">
+                        <div class="reward-image">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <div class="reward-info">
+                            <h4>1 Month Premium</h4>
+                            <p>Premium membership for 30 days</p>
+                            <div class="reward-points">5,000 points</div>
+                        </div>
+                        <button class="redeem-reward-btn" data-points="5000" data-type="premium" data-value="30">Redeem</button>
+                    </div>
+
+                    <div class="reward-item" data-category="premium">
+                        <div class="reward-image">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="reward-info">
+                            <h4>VIP Priority</h4>
+                            <p>24 hours of priority ride booking</p>
+                            <div class="reward-points">1,000 points</div>
+                        </div>
+                        <button class="redeem-reward-btn" data-points="1000" data-type="priority" data-value="24">Redeem</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How to Earn Points -->
+            <div class="earn-points">
+                <h3>How to Earn Points</h3>
+                <div class="earn-methods">
+                    <div class="earn-method">
+                        <div class="method-icon">
+                            <i class="fa-solid fa-car"></i>
+                        </div>
+                        <div class="method-info">
+                            <h4>Complete Rides</h4>
+                            <p>Earn 10 points per 1,000 XAF spent</p>
+                        </div>
+                    </div>
+
+                    <div class="earn-method">
+                        <div class="method-icon">
+                            <i class="fa-solid fa-burger"></i>
+                        </div>
+                        <div class="method-info">
+                            <h4>Order Food</h4>
+                            <p>Earn 15 points per 1,000 XAF spent</p>
+                        </div>
+                    </div>
+
+                    <div class="earn-method">
+                        <div class="method-icon">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+                        <div class="method-info">
+                            <h4>Refer Friends</h4>
+                            <p>Earn 500 points per successful referral</p>
+                        </div>
+                    </div>
+
+                    <div class="earn-method">
+                        <div class="method-icon">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <div class="method-info">
+                            <h4>Daily Login</h4>
+                            <p>Earn 5 points for daily app usage</p>
+                        </div>
+                    </div>
+
+                    <div class="earn-method">
+                        <div class="method-icon">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="method-info">
+                            <h4>Rate & Review</h4>
+                            <p>Earn 20 points for each review</p>
+                        </div>
+                    </div>
+
+                    <div class="earn-method">
+                        <div class="method-icon">
+                            <i class="fa-solid fa-birthday-cake"></i>
+                        </div>
+                        <div class="method-info">
+                            <h4>Birthday Bonus</h4>
+                            <p>Earn 200 points on your birthday</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Points History -->
+            <div class="points-history">
+                <h3>Points History</h3>
+                <div class="history-list">
+                    <div class="history-item">
+                        <div class="history-icon earned">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <div class="history-info">
+                            <h4>Ride completed</h4>
+                            <p>Today, 2:30 PM</p>
+                        </div>
+                        <div class="history-points positive">+150</div>
+                    </div>
+
+                    <div class="history-item">
+                        <div class="history-icon redeemed">
+                            <i class="fa-solid fa-minus"></i>
+                        </div>
+                        <div class="history-info">
+                            <h4>Cashback redeemed</h4>
+                            <p>Yesterday, 6:45 PM</p>
+                        </div>
+                        <div class="history-points negative">-500</div>
+                    </div>
+
+                    <div class="history-item">
+                        <div class="history-icon earned">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <div class="history-info">
+                            <h4>Food order</h4>
+                            <p>Jan 24, 8:30 PM</p>
+                        </div>
+                        <div class="history-points positive">+210</div>
+                    </div>
+
+                    <div class="history-item">
+                        <div class="history-icon earned">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <div class="history-info">
+                            <h4>Daily login bonus</h4>
+                            <p>Jan 24, 9:00 AM</p>
+                        </div>
+                        <div class="history-points positive">+5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Redeem Confirmation Modal -->
+    <div class="modal" id="redeemModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Confirm Redemption</h3>
+                <button class="close-modal" id="closeRedeemModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="redeem-confirmation">
+                    <div class="reward-preview" id="rewardPreview">
+                        <!-- Reward details will be populated here -->
+                    </div>
+                    <div class="confirmation-details">
+                        <p>Are you sure you want to redeem this reward?</p>
+                        <div class="points-required">
+                            <span>Points required: </span>
+                            <span id="pointsRequired">0</span>
+                        </div>
+                        <div class="points-balance">
+                            <span>Your balance: </span>
+                            <span id="currentBalance">2,450</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-redeem-btn" id="cancelRedeem">Cancel</button>
+                <button class="confirm-redeem-btn" id="confirmRedeem">Confirm Redemption</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="JS/rewards.js"></script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earnings - SwiftRide Driver</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/driver.css">
+</head>
+<body>
+    <!-- Driver Header -->
+    <div class="driver-header">
+        <div class="driver-header-left">
+            <button class="menu-toggle" onclick="toggleDriverSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span> Driver</h2>
+        </div>
+        <div class="driver-header-right">
+            <div class="driver-status">
+                <span class="status-indicator"></span>
+                <span id="onlineStatus">Online</span>
+            </div>
+            <button class="btn-secondary" onclick="toggleOnlineStatus()">Go Offline</button>
+        </div>
+    </div>
+
+    <!-- Driver Sidebar -->
+    <div class="driver-sidebar" id="driverSidebar">
+        <nav class="driver-nav">
+            <a href="driver-dashboard.html">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="driver-rides.html">
+                <i class="fa-solid fa-route"></i> My Rides
+            </a>
+            <a href="driver-earnings.html" class="active">
+                <i class="fa-solid fa-dollar-sign"></i> Earnings
+            </a>
+            <a href="driver-profile.html">
+                <i class="fa-solid fa-user"></i> Profile
+            </a>
+            <a href="driver-vehicle.html">
+                <i class="fa-solid fa-car"></i> Vehicle
+            </a>
+            <a href="driver-ratings.html">
+                <i class="fa-solid fa-star"></i> Ratings & Reviews
+            </a>
+            <a href="driver-settings.html">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="driverLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="driver-content">
+        <div class="content-area">
+            <div class="page-header">
+                <h1><i class="fa-solid fa-dollar-sign"></i> Earnings</h1>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>$2,340</h3>
+                        <p>Total Earnings</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-calendar"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>$485</h3>
+                        <p>This Month</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-calendar-week"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>$125</h3>
+                        <p>This Week</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Earnings Breakdown Chart -->
+            <div class="content-card">
+                <h2>Earnings Breakdown</h2>
+                <div class="chart-container">
+                    <canvas id="earningsBreakdownChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Recent Payouts -->
+            <div class="content-card">
+                <h2>Recent Payouts</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Payment Method</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Jan 20, 2026</td>
+                            <td>$450</td>
+                            <td>Bank Transfer</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Jan 13, 2026</td>
+                            <td>$425</td>
+                            <td>Bank Transfer</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Jan 6, 2026</td>
+                            <td>$465</td>
+                            <td>Bank Transfer</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="../JS/driver.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            checkDriverAuth();
+            
+            if (document.getElementById('earningsBreakdownChart')) {
+                const breakdownCtx = document.getElementById('earningsBreakdownChart');
+                new Chart(breakdownCtx.getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Ride Fares', 'Tips', 'Bonuses'],
+                        datasets: [{
+                            data: [1850, 350, 140],
+                            backgroundColor: ['#ec1304', '#388e3c', '#1976d2']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'bottom' } }
+                    }
+                });
+            }
+        });
+    </script>    <script src="js/script.js"></script></body>
+</html>

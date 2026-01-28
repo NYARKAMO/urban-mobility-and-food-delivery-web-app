@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Rides - SwiftRide Driver</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/driver.css">
+</head>
+<body>
+    <!-- Driver Header -->
+    <div class="driver-header">
+        <div class="driver-header-left">
+            <button class="menu-toggle" onclick="toggleDriverSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span> Driver</h2>
+        </div>
+        <div class="driver-header-right">
+            <div class="driver-status">
+                <span class="status-indicator"></span>
+                <span id="onlineStatus">Online</span>
+            </div>
+            <button class="btn-secondary" onclick="toggleOnlineStatus()">Go Offline</button>
+        </div>
+    </div>
+
+    <!-- Driver Sidebar -->
+    <div class="driver-sidebar" id="driverSidebar">
+        <nav class="driver-nav">
+            <a href="driver-dashboard.html">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="driver-rides.html" class="active">
+                <i class="fa-solid fa-route"></i> My Rides
+            </a>
+            <a href="driver-earnings.html">
+                <i class="fa-solid fa-dollar-sign"></i> Earnings
+            </a>
+            <a href="driver-profile.html">
+                <i class="fa-solid fa-user"></i> Profile
+            </a>
+            <a href="driver-vehicle.html">
+                <i class="fa-solid fa-car"></i> Vehicle
+            </a>
+            <a href="driver-ratings.html">
+                <i class="fa-solid fa-star"></i> Ratings & Reviews
+            </a>
+            <a href="driver-settings.html">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="driverLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="driver-content">
+        <div class="content-area">
+            <div class="page-header">
+                <h1><i class="fa-solid fa-route"></i> My Rides</h1>
+                <input type="text" placeholder="Search rides..." style="max-width: 250px; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px;">
+            </div>
+
+            <!-- Filter Options -->
+            <div class="content-card">
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <select style="padding: 0.6rem 1rem; border: 1px solid #ddd; border-radius: 6px;">
+                        <option value="">All Status</option>
+                        <option value="completed">Completed</option>
+                        <option value="ongoing">Ongoing</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                    <select style="padding: 0.6rem 1rem; border: 1px solid #ddd; border-radius: 6px;">
+                        <option value="">All Time</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Rides Table -->
+            <div class="content-card">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Ride ID</th>
+                            <th>Customer</th>
+                            <th>Pickup Location</th>
+                            <th>Dropoff Location</th>
+                            <th>Distance</th>
+                            <th>Fare</th>
+                            <th>Status</th>
+                            <th>Rating</th>
+                            <th>Date & Time</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#R001</td>
+                            <td>Nadine Patricia</td>
+                            <td>Downtown Mall</td>
+                            <td>Airport Terminal 1</td>
+                            <td>12.5 km</td>
+                            <td>$24.50</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                            <td><span class="rating-badge"><i class="fa-solid fa-star"></i> 5.0</span></td>
+                            <td>Today, 2:30 PM</td>
+                            <td><button class="btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>#R002</td>
+                            <td>John Smith</td>
+                            <td>Central Station</td>
+                            <td>Business District</td>
+                            <td>8.2 km</td>
+                            <td>$16.40</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                            <td><span class="rating-badge"><i class="fa-solid fa-star"></i> 4.9</span></td>
+                            <td>Today, 1:15 PM</td>
+                            <td><button class="btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>#R003</td>
+                            <td>Sarah Johnson</td>
+                            <td>Shopping Center</td>
+                            <td>Residential Area</td>
+                            <td>9.8 km</td>
+                            <td>$19.60</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                            <td><span class="rating-badge"><i class="fa-solid fa-star"></i> 4.8</span></td>
+                            <td>Yesterday, 6:45 PM</td>
+                            <td><button class="btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>#R004</td>
+                            <td>Michael Brown</td>
+                            <td>Hotel</td>
+                            <td>Train Station</td>
+                            <td>7.5 km</td>
+                            <td>$15.00</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                            <td><span class="rating-badge"><i class="fa-solid fa-star"></i> 4.7</span></td>
+                            <td>Yesterday, 3:20 PM</td>
+                            <td><button class="btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>#R005</td>
+                            <td>Emily Davis</td>
+                            <td>University Campus</td>
+                            <td>Shopping Mall</td>
+                            <td>11.2 km</td>
+                            <td>$22.40</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                            <td><span class="rating-badge"><i class="fa-solid fa-star"></i> 4.6</span></td>
+                            <td>2 days ago, 5:10 PM</td>
+                            <td><button class="btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS/driver.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            checkDriverAuth();
+        });
+    </script>    <script src="js/script.js"></script></body>
+</html>

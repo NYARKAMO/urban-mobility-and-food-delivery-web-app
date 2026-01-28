@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Settings - SwiftRide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/restaurant.css">
+</head>
+<body>
+    <!-- Restaurant Header -->
+    <div class="restaurant-header">
+        <div class="restaurant-header-left">
+            <button class="menu-toggle" onclick="toggleRestaurantSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-utensils"></i> Swift<span style="color: #ff6f00;">Ride</span> Restaurant</h2>
+        </div>
+        <div class="restaurant-header-right">
+            <div class="restaurant-status">
+                <span class="status-indicator"></span>
+                <span id="restaurantStatus">Open</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Restaurant Sidebar -->
+    <div class="restaurant-sidebar" id="restaurantSidebar">
+        <nav class="restaurant-nav">
+            <a href="restaurant-dashboard.html">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="restaurant-orders.html">
+                <i class="fa-solid fa-utensils"></i> Orders
+            </a>
+            <a href="restaurant-menu.html">
+                <i class="fa-solid fa-list"></i> Menu
+            </a>
+            <a href="restaurant-earnings.html">
+                <i class="fa-solid fa-dollar-sign"></i> Earnings
+            </a>
+            <a href="restaurant-profile.html">
+                <i class="fa-solid fa-store"></i> Restaurant Info
+            </a>
+            <a href="restaurant-analytics.html">
+                <i class="fa-solid fa-chart-bar"></i> Analytics
+            </a>
+            <a href="restaurant-settings.html" class="active">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="restaurantLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="restaurant-content">
+        <div class="content-area">
+            <div class="page-header">
+                <h1><i class="fa-solid fa-gear"></i> Restaurant Settings</h1>
+            </div>
+
+            <!-- Notification Settings -->
+            <div class="content-card">
+                <h2>Notification Preferences</h2>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border: 1px solid #eee; border-radius: 5px;">
+                        <div>
+                            <p style="margin: 0; font-weight: 500;">New Orders</p>
+                            <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; color: #666;">Get notified for every new order</p>
+                        </div>
+                        <input type="checkbox" checked style="width: 24px; height: 24px; cursor: pointer;">
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border: 1px solid #eee; border-radius: 5px;">
+                        <div>
+                            <p style="margin: 0; font-weight: 500;">Order Updates</p>
+                            <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; color: #666;">Get updates on order status and customer feedback</p>
+                        </div>
+                        <input type="checkbox" checked style="width: 24px; height: 24px; cursor: pointer;">
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border: 1px solid #eee; border-radius: 5px;">
+                        <div>
+                            <p style="margin: 0; font-weight: 500;">Promotional Offers</p>
+                            <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; color: #666;">Receive promotional opportunities and campaigns</p>
+                        </div>
+                        <input type="checkbox" checked style="width: 24px; height: 24px; cursor: pointer;">
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border: 1px solid #eee; border-radius: 5px;">
+                        <div>
+                            <p style="margin: 0; font-weight: 500;">Weekly Reports</p>
+                            <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; color: #666;">Receive weekly business performance reports</p>
+                        </div>
+                        <input type="checkbox" style="width: 24px; height: 24px; cursor: pointer;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delivery Zone Settings -->
+            <div class="content-card">
+                <h2>Delivery Zone Settings</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Max Delivery Distance (miles)</label>
+                        <input type="number" value="5" min="1" max="50" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Min Order Value for Delivery</label>
+                        <input type="number" value="15" min="0" step="0.01" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Delivery Fee ($)</label>
+                        <input type="number" value="3.99" min="0" step="0.01" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Max Orders Per Hour</label>
+                        <input type="number" value="25" min="1" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Settings -->
+            <div class="content-card">
+                <h2>Account Settings</h2>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email Address</label>
+                        <input type="email" value="restaurant@swiftride.com" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Current Password</label>
+                        <input type="password" placeholder="Enter current password" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">New Password</label>
+                        <input type="password" placeholder="Leave blank to keep current" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Confirm New Password</label>
+                        <input type="password" placeholder="Confirm new password" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+
+                    <button class="btn-secondary" style="width: 100%;">Update Account</button>
+                </div>
+            </div>
+
+            <!-- Language & Preferences -->
+            <div class="content-card">
+                <h2>Language & Regional Settings</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Language</label>
+                        <select style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                            <option selected>English</option>
+                            <option>Spanish</option>
+                            <option>French</option>
+                            <option>Chinese</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Currency</label>
+                        <select style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                            <option selected>USD ($)</option>
+                            <option>EUR (€)</option>
+                            <option>GBP (£)</option>
+                            <option>CAD (C$)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Timezone</label>
+                        <select style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                            <option selected>Eastern Time (ET)</option>
+                            <option>Central Time (CT)</option>
+                            <option>Mountain Time (MT)</option>
+                            <option>Pacific Time (PT)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Danger Zone -->
+            <div class="content-card" style="border-left: 4px solid #f44336; background-color: #ffebee;">
+                <h2 style="color: #f44336;"><i class="fa-solid fa-exclamation-triangle"></i> Danger Zone</h2>
+                <p style="color: #666; margin-bottom: 1rem;">These actions cannot be undone. Please proceed with caution.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn-secondary" style="background-color: #ff9800; color: white; border: none;" onclick="suspendAccount()">
+                        <i class="fa-solid fa-pause"></i> Temporarily Close Restaurant
+                    </button>
+                    <button class="btn-secondary" style="background-color: #f44336; color: white; border: none;" onclick="deleteAccount()">
+                        <i class="fa-solid fa-trash"></i> Delete Account & Data
+                    </button>
+                </div>
+            </div>
+
+            <button class="btn-primary" style="margin-top: 2rem;" onclick="saveSettings()">
+                <i class="fa-solid fa-save"></i> Save Settings
+            </button>
+        </div>
+    </div>
+
+    <script src="../JS/restaurant.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            checkRestaurantAuth();
+        });
+
+        function saveSettings() {
+            alert('Settings saved successfully!');
+        }
+
+        function suspendAccount() {
+            if (confirm('Are you sure you want to temporarily close your restaurant? You can reopen it anytime.')) {
+                alert('Restaurant closed temporarily. You can reopen it from your dashboard.');
+            }
+        }
+
+        function deleteAccount() {
+            if (confirm('Are you absolutely sure? This will permanently delete your restaurant account and all data. This action cannot be undone.')) {
+                alert('Account deletion initiated. You will receive a confirmation email shortly.');
+            }
+        }
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>

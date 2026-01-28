@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Management - SwiftRide Admin</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../favicon_io/site.webmanifest">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="admin-header-left">
+            <button class="menu-toggle" onclick="toggleAdminSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span> Admin</h2>
+        </div>
+        <div class="admin-header-right">
+            <div class="admin-notifications">
+                <i class="fa-solid fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="admin-user">
+                <img src="../nadine.jpeg" alt="Admin Avatar" class="admin-avatar">
+                <span>Admin User</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Sidebar -->
+    <div class="admin-sidebar" id="adminSidebar">
+        <nav class="admin-nav">
+            <a href="admin-dashboard.html">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="admin-users.html">
+                <i class="fa-solid fa-users"></i> Users
+            </a>
+            <a href="admin-drivers.html">
+                <i class="fa-solid fa-car"></i> Drivers
+            </a>
+            <a href="admin-rides.html">
+                <i class="fa-solid fa-route"></i> Rides
+            </a>
+            <a href="admin-orders.html" class="active">
+                <i class="fa-solid fa-utensils"></i> Orders
+            </a>
+            <a href="admin-restaurants.html">
+                <i class="fa-solid fa-store"></i> Restaurants
+            </a>
+            <a href="admin-analytics.html">
+                <i class="fa-solid fa-chart-bar"></i> Analytics
+            </a>
+            <a href="admin-settings.html">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="adminLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-content">
+        <div class="data-table-container">
+            <div class="table-header">
+                <h3>Order Management</h3>
+                <div class="search-filter">
+                    <input type="text" class="search-input" placeholder="Search orders..." id="orderSearch">
+                    <select class="filter-select" id="orderStatusFilter">
+                        <option value="">All Status</option>
+                        <option value="completed">Completed</option>
+                        <option value="preparing">Preparing</option>
+                        <option value="out-for-delivery">Out for Delivery</option>
+                        <option value="cancelled">Cancelled</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                    <input type="date" id="orderDateFilter">
+                    <button class="btn-primary" onclick="exportOrders()">Export</button>
+                </div>
+            </div>
+
+            <table class="data-table" id="ordersTable">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Restaurant</th>
+                        <th>Items</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                        <th>Delivery Time</th>
+                        <th>Delivery Address</th>
+                        <th>Date/Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>O001</td>
+                        <td>Nadine Patricia</td>
+                        <td>Pizza Palace</td>
+                        <td>Margherita Pizza, Garlic Bread</td>
+                        <td><span class="status-badge status-completed">Delivered</span></td>
+                        <td>$24.99</td>
+                        <td>32 min</td>
+                        <td>123 Main St, Apt 4B</td>
+                        <td>2024-01-27 13:30</td>
+                        <td class="action-buttons">
+                            <button class="btn-secondary" onclick="viewOrder(1)">View</button>
+                            <button class="btn-secondary" onclick="editOrder(1)">Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>O002</td>
+                        <td>John Doe</td>
+                        <td>Burger Joint</td>
+                        <td>Cheeseburger, Fries, Coke</td>
+                        <td><span class="status-badge status-active">Out for Delivery</span></td>
+                        <td>$18.50</td>
+                        <td>15 min</td>
+                        <td>456 Oak Ave, Suite 200</td>
+                        <td>2024-01-27 14:45</td>
+                        <td class="action-buttons">
+                            <button class="btn-secondary" onclick="viewOrder(2)">View</button>
+                            <button class="btn-secondary" onclick="trackOrder(2)">Track</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>O003</td>
+                        <td>Jane Smith</td>
+                        <td>Sushi Express</td>
+                        <td>California Roll, Miso Soup</td>
+                        <td><span class="status-badge status-pending">Preparing</span></td>
+                        <td>$22.75</td>
+                        <td>25 min</td>
+                        <td>789 Pine St</td>
+                        <td>2024-01-27 15:00</td>
+                        <td class="action-buttons">
+                            <button class="btn-secondary" onclick="viewOrder(3)">View</button>
+                            <button class="btn-secondary" onclick="updateStatus(3)">Update Status</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>O004</td>
+                        <td>Mike Johnson</td>
+                        <td>Taco Fiesta</td>
+                        <td>3 Tacos, Nachos, Salsa</td>
+                        <td><span class="status-badge status-cancelled">Cancelled</span></td>
+                        <td>$0.00</td>
+                        <td>N/A</td>
+                        <td>321 Elm St, Unit 5</td>
+                        <td>2024-01-27 12:15</td>
+                        <td class="action-buttons">
+                            <button class="btn-secondary" onclick="viewOrder(4)">View</button>
+                            <button class="btn-secondary" onclick="refundOrder(4)">Refund</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Order Details Modal -->
+        <div id="orderModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Order Details</h3>
+                    <span class="close" onclick="closeModal()">&times;</span>
+                </div>
+                <div class="modal-body" id="orderDetails">
+                    <!-- Order details will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS/admin.js"></script>
+</body>
+</html>

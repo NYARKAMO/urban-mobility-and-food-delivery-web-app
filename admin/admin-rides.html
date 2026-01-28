@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride Management - SwiftRide Admin</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../favicon_io/site.webmanifest">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="admin-header-left">
+            <button class="menu-toggle" onclick="toggleAdminSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span> Admin</h2>
+        </div>
+        <div class="admin-header-right">
+            <div class="admin-notifications">
+                <i class="fa-solid fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="admin-user">
+                <img src="../nadine.jpeg" alt="Admin Avatar" class="admin-avatar">
+                <span>Admin User</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Sidebar -->
+    <div class="admin-sidebar" id="adminSidebar">
+        <nav class="admin-nav">
+            <a href="admin-dashboard.html">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="admin-users.html">
+                <i class="fa-solid fa-users"></i> Users
+            </a>
+            <a href="admin-drivers.html">
+                <i class="fa-solid fa-car"></i> Drivers
+            </a>
+            <a href="admin-rides.html" class="active">
+                <i class="fa-solid fa-route"></i> Rides
+            </a>
+            <a href="admin-orders.html">
+                <i class="fa-solid fa-utensils"></i> Orders
+            </a>
+            <a href="admin-restaurants.html">
+                <i class="fa-solid fa-store"></i> Restaurants
+            </a>
+            <a href="admin-analytics.html">
+                <i class="fa-solid fa-chart-bar"></i> Analytics
+            </a>
+            <a href="admin-settings.html">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="adminLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-content">
+        <div class="data-table-container">
+            <div class="table-header">
+                <h3>Ride Management</h3>
+                <div class="search-filter">
+                    <input type="text" class="search-input" placeholder="Search rides..." id="rideSearch">
+                    <select class="filter-select" id="rideStatusFilter">
+                        <option value="">All Status</option>
+                        <option value="completed">Completed</option>
+                        <option value="active">Active</option>
+                        <option value="cancelled">Cancelled</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                    <input type="date" id="rideDateFilter">
+                    <button class="btn-primary" onclick="exportRides()">Export</button>
+                </div>
+            </div>
+
+            <table class="data-table" id="ridesTable">
+                <thead>
+                    <tr>
+                        <th>Ride ID</th>
+                        <th>Customer</th>
+                        <th>Driver</th>
+                        <th>Pickup Location</th>
+                        <th>Dropoff Location</th>
+                        <th>Status</th>
+                        <th>Fare</th>
+                        <th>Distance</th>
+                        <th>Duration</th>
+                        <th>Date/Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>R001</td>
+                        <td>Nadine Patricia</td>
+                        <td>Alex Rodriguez</td>
+                        <td>Downtown Mall</td>
+                        <td>Airport Terminal 1</td>
+                        <td><span class="status-badge status-completed">Completed</span></td>
+                        <td>$24.50</td>
+                        <td>12.5 km</td>
+                        <td>18 min</td>
+                        <td>2024-01-27 14:30</td>
+                        <td class="action-buttons">
+                            <button class="btn-secondary" onclick="viewRide(1)">View</button>
+                            <button class="btn-secondary" onclick="editRide(1)">Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>R002</td>
+                        <td>John Doe</td>
+                        <td>Sarah Johnson</td>
+                        <td>Central Station</td>
+                        <td>Business District</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                        <td>$18.75</td>
+                        <td>8.2 km</td>
+                        <td>12 min</td>
+                        <td>2024-01-27 15:45</td>
+                        <td class="action-buttons">
+                            <button class="btn-secondary" onclick="viewRide(2)">View</button>
+                            <button class="btn-secondary" onclick="trackRide(2)">Track</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>R003</td>
+                        <td>Jane Smith</td>
+                        <td>Alex Rodriguez</td>
+                        <td>University Campus</td>
+                        <td>Shopping Center</td>
+                        <td><span class="status-badge status-completed">Completed</span></td>
+                        <td>$15.20</td>
+                        <td>6.8 km</td>
+                        <td>10 min</td>
+                        <td>2024-01-27 13:15</td>
+                        <td class="action-buttons">
+                            <button class="btn-secondary" onclick="viewRide(3)">View</button>
+                            <button class="btn-secondary" onclick="editRide(3)">Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>R004</td>
+                        <td>Mike Johnson</td>
+                        <td>Emma Wilson</td>
+                        <td>Hotel Plaza</td>
+                        <td>Train Station</td>
+                        <td><span class="status-badge status-cancelled">Cancelled</span></td>
+                        <td>$0.00</td>
+                        <td>0 km</td>
+                        <td>0 min</td>
+                        <td>2024-01-27 12:00</td>
+                        <td class="action-buttons">
+                            <button class="btn-secondary" onclick="viewRide(4)">View</button>
+                            <button class="btn-secondary" onclick="refundRide(4)">Refund</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Ride Details Modal -->
+        <div id="rideModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Ride Details</h3>
+                    <span class="close" onclick="closeModal()">&times;</span>
+                </div>
+                <div class="modal-body" id="rideDetails">
+                    <!-- Ride details will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS/admin.js"></script>
+</body>
+</html>

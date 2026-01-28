@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - SwiftRide Admin</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../favicon_io/site.webmanifest">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="admin-header-left">
+            <button class="menu-toggle" onclick="toggleAdminSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span> Admin</h2>
+        </div>
+        <div class="admin-header-right">
+            <div class="admin-notifications">
+                <i class="fa-solid fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="admin-user">
+                <img src="../nadine.jpeg" alt="Admin Avatar" class="admin-avatar">
+                <span>Admin User</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Sidebar -->
+    <div class="admin-sidebar" id="adminSidebar">
+        <nav class="admin-nav">
+            <a href="admin-dashboard.html">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="admin-users.html">
+                <i class="fa-solid fa-users"></i> Users
+            </a>
+            <a href="admin-drivers.html">
+                <i class="fa-solid fa-car"></i> Drivers
+            </a>
+            <a href="admin-rides.html">
+                <i class="fa-solid fa-route"></i> Rides
+            </a>
+            <a href="admin-orders.html">
+                <i class="fa-solid fa-utensils"></i> Orders
+            </a>
+            <a href="admin-restaurants.html">
+                <i class="fa-solid fa-store"></i> Restaurants
+            </a>
+            <a href="admin-analytics.html">
+                <i class="fa-solid fa-chart-bar"></i> Analytics
+            </a>
+            <a href="admin-settings.html" class="active">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="adminLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-content">
+        <h1>System Settings</h1>
+
+        <!-- General Settings -->
+        <div class="data-table-container">
+            <h3>General Settings</h3>
+            <form class="admin-form">
+                <div class="form-group">
+                    <label for="appName">App Name</label>
+                    <input type="text" id="appName" value="SwiftRide">
+                </div>
+                <div class="form-group">
+                    <label for="supportEmail">Support Email</label>
+                    <input type="email" id="supportEmail" value="support@swiftride.com">
+                </div>
+                <div class="form-group">
+                    <label for="supportPhone">Support Phone</label>
+                    <input type="tel" id="supportPhone" value="+1 800 SWIFT">
+                </div>
+                <div class="form-group">
+                    <label for="timezone">Timezone</label>
+                    <select id="timezone">
+                        <option value="UTC-8">Pacific Time (UTC-8)</option>
+                        <option value="UTC-5">Eastern Time (UTC-5)</option>
+                        <option value="UTC+0">GMT (UTC+0)</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Pricing Settings -->
+        <div class="data-table-container">
+            <h3>Pricing Settings</h3>
+            <form class="admin-form">
+                <div class="form-group">
+                    <label for="baseFare">Base Fare ($)</label>
+                    <input type="number" id="baseFare" value="2.50" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="perMile">Per Mile Rate ($)</label>
+                    <input type="number" id="perMile" value="1.50" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="perMinute">Per Minute Rate ($)</label>
+                    <input type="number" id="perMinute" value="0.25" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="minimumFare">Minimum Fare ($)</label>
+                    <input type="number" id="minimumFare" value="5.00" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="surgeMultiplier">Surge Pricing Multiplier</label>
+                    <input type="number" id="surgeMultiplier" value="1.5" step="0.1">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Update Pricing</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Commission Settings -->
+        <div class="data-table-container">
+            <h3>Commission Settings</h3>
+            <form class="admin-form">
+                <div class="form-group">
+                    <label for="driverCommission">Driver Commission (%)</label>
+                    <input type="number" id="driverCommission" value="20" min="0" max="100">
+                </div>
+                <div class="form-group">
+                    <label for="restaurantCommission">Restaurant Commission (%)</label>
+                    <input type="number" id="restaurantCommission" value="15" min="0" max="100">
+                </div>
+                <div class="form-group">
+                    <label for="deliveryFee">Delivery Fee ($)</label>
+                    <input type="number" id="deliveryFee" value="2.99" step="0.01">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Update Commissions</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Notification Settings -->
+        <div class="data-table-container">
+            <h3>Notification Settings</h3>
+            <form class="admin-form">
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="emailNotifications" checked>
+                        Email Notifications
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="smsNotifications" checked>
+                        SMS Notifications
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="pushNotifications" checked>
+                        Push Notifications
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="maintenanceMode">
+                        <input type="checkbox" id="maintenanceMode">
+                        Maintenance Mode
+                    </label>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Settings</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Security Settings -->
+        <div class="data-table-container">
+            <h3>Security Settings</h3>
+            <form class="admin-form">
+                <div class="form-group">
+                    <label for="sessionTimeout">Session Timeout (minutes)</label>
+                    <input type="number" id="sessionTimeout" value="60" min="15" max="480">
+                </div>
+                <div class="form-group">
+                    <label for="passwordMinLength">Minimum Password Length</label>
+                    <input type="number" id="passwordMinLength" value="8" min="6" max="20">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="twoFactorAuth" checked>
+                        Require Two-Factor Authentication
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="ipWhitelist">
+                        IP Whitelist Enabled
+                    </label>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Update Security</button>
+                    <button type="button" class="btn-danger" onclick="resetToDefaults()">Reset to Defaults</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../JS/admin.js"></script>
+</body>
+</html>

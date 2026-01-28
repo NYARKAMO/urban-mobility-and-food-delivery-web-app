@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride & Food App Nav</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <!-- Side Navigation -->
+    <div class="sidenav" id="mySidenav">
+      <div class="sidenav-header">
+        <h4><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span></h4>
+        <button class="closebtn" onclick="closeNav()">&times;</button>
+      </div>
+      
+      <div class="sidenav-user" id="userInfo">
+        <img src="../images/nadine.jpeg" alt="User Avatar" class="sidenav-avatar">
+        <div>
+          <h5>Nadine Patricia</h5>
+          <p>nadine@mail.com</p>
+        </div>
+      </div>
+
+      <div class="sidenav-menu">
+        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+        <div id="authMenu">
+          <!-- Authenticated user menu -->
+          <a href="book-ride.html"><i class="fa-solid fa-car"></i> Book Ride</a>
+          <a href="order-food.html"><i class="fa-solid fa-utensils"></i> Order Food</a>
+          <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
+
+          <hr>
+
+          <a href="wallet.html"><i class="fa-solid fa-wallet"></i> Wallet</a>
+          <a href="rewards.html"><i class="fa-solid fa-gift"></i> Rewards</a>
+          <a href="order-history.html"><i class="fa-solid fa-clock-rotate-left"></i> Order History</a>
+          <a href="promo-codes.html"><i class="fa-solid fa-tags"></i> Promo Codes</a>
+
+          <hr>
+
+          <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+          <a href="help-support.html"><i class="fa-solid fa-headset"></i> Help & Support</a>
+          <a href="../admin/admin-login.html"><i class="fa-solid fa-crown"></i> Admin Panel</a>
+          <a href="#" class="logout-link" onclick="logoutUser()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+        <div id="guestMenu" style="display: none;">
+          <!-- Guest menu -->
+          <a href="login.html"><i class="fa-solid fa-sign-in-alt"></i> Sign In</a>
+          <a href="signup.html"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+
+          <hr>
+
+          <a href="help-support.html"><i class="fa-solid fa-headset"></i> Help & Support</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Bar with Menu Toggle -->
+    <div class="topbar">
+      <div style="display: flex; align-items: center;">
+
+        <button class="menu-toggle" onclick="openNav()">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <h5 class="topbar-title">SWift<span style="color: #ec1304;">Ride</span></h5>
+      </div>
+      <div class="topbar-actions">
+        <button class="topbar-btn"><i class="fa-solid fa-bell"></i></button>
+        <button class="topbar-btn"><i class="fa-solid fa-cart-shopping"></i></button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content" id="mainContent">
+      <div id="Home" class="section active">
+        <!-- Toggle buttons for Map / Restaurants -->
+        <div class="home-toggle">
+          <button class="active" data-show="Map">Ride Map</button>
+          <button data-show="Restaurants">Restaurants</button>
+        </div>
+
+        <!-- Ride Map Section -->
+        <div id="MapContent">
+          <h2>Ride Map</h2>
+          <!-- Map Placeholder -->
+          <img src="images (27).jpeg"
+              alt="Ride Map" style="width:100%; height: 150px; border-radius:15px;margin-bottom:20px;">
+
+          <!-- Featured Rides -->
+          <div class="rides-offers">
+            <h3>Popular Rides</h3>
+            <div class="ride-card">
+              <img src="../images/images.jpeg"
+                  alt="Standard Ride" style="width:100%;border-radius:12px;margin-bottom:10px;">
+              <h4>Standard Ride</h4>
+              <p>Affordable rides for everyday trips.</p>
+              <span>Starting at 500 XAF</span>
+            </div>
+            <div class="ride-card">
+              <img src="../images/images (4).jpeg" 
+                  alt="Premium Ride" style="width:100%;border-radius:12px;margin-bottom:10px;">
+              <h4>Premium Ride</h4>
+              <p>Luxury vehicles for comfortable travel.</p>
+              <span>Starting at 12000 XAF</span>
+            </div>
+            <div class="ride-card">
+              <img src="../images/images (3).jpeg" 
+                alt="Standard Ride" style="width:100%;border-radius:12px;margin-bottom:10px;">
+              <h4>Pool Ride</h4>
+              <p>Share your ride and save money.</p>
+              <span>Starting at 3500 XAF</span>
+            </div>
+          </div>
+
+          <!-- Nearby Drivers -->
+          <div class="nearby-drivers">
+            <h3>Nearby Drivers</h3>
+            <ul>
+              <li>Driver A – 2 min away</li>
+              <li>Driver B – 5 min away</li>
+              <li>Driver C – 7 min away</li>
+            </ul>
+          </div>
+
+          <!-- Ride Promotions -->
+          <div class="promotions">
+            <h3>Ride Promotions</h3>
+            <ul>
+              <li>20% off your first ride.</li>
+              <li>Weekend special: Flat 5%  discount on all rides.</li>
+              <li>Invite a friend and get 200 XAF ride credit.</li>
+            </ul>
+          </div>
+        </div>
+
+
+        <!-- Restaurant Section -->
+        <div id="RestaurantContent" style="display:none;">
+          <h2>Restaurants</h2>
+          <p>Discover local restaurants and order your favorite meals online.</p>
+
+          <!-- Featured Restaurants -->
+          <div class="restaurants">
+            <h3>Top Restaurants Near You</h3>
+            <div class="restaurant-card">
+              <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=400&q=80" alt="Pasta Palace" style="width:100%;border-radius:12px;margin-bottom:10px;">
+              <h4>Pasta Palace</h4>
+              <p>Italian cuisine, freshly made pasta, pizza, and more.</p>
+              <span>Rating: 4.8  | Delivery: 30 mins</span>
+            </div>
+            <div class="restaurant-card">
+              <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=400&q=80" alt="Sushi World" style="width:100%;border-radius:12px;margin-bottom:10px;">
+              <h4>Sushi World</h4>
+              <p>Fresh sushi, sashimi, and Japanese delicacies.</p>
+              <span>Rating: 4.7  | Delivery: 25 mins</span>
+            </div>
+            <div class="restaurant-card">
+              <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80" alt="Burger Hub" style="width:100%;border-radius:12px;margin-bottom:10px;">
+              <h4>Burger Hub</h4>
+              <p>Classic and gourmet burgers, sides, and drinks.</p>
+              <span>Rating: 4.5  | Delivery: 20 mins</span>
+            </div>
+          </div>
+
+          <!-- Food Promotions -->
+          <div class="food-promotions">
+            <h3>Special Offers</h3>
+            <ul>
+              <li>Get 20% off your first food order.</li>
+              <li>Free delivery on orders above 10000 XAF.</li>
+              <li>Combo deals: Burger + Fries + Drink for 8000 XAF.</li>
+            </ul>
+          </div>
+
+          <!-- Categories -->
+          <div class="food-categories " style="display: flex; flex-direction: column;">
+            <h3>Explore by Category</h3>
+            <ul>
+              <li>Pizza</li>
+              <li>Burgers</li>
+              <li>Sushi</li>
+              <li>Desserts</li>
+              <li>Healthy</li>
+              <li>Drinks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rides Section -->
+      <div id="Rides" class="section">
+        <h2>My Rides</h2>
+        <p>Check your ongoing, upcoming and past ride bookings.</p>
+
+        <!-- Current / Ongoing Ride -->
+        <div class="ongoing-ride">
+          <h3>Ongoing Ride</h3>
+          <div class="ongoing-card">
+            <img src="../images/images (14).jpeg" alt="Ride Car">
+            <div>
+              <h4>Driver: Samuel K.</h4>
+              <p>Vehicle: Toyota Corolla - Blue</p>
+              <p>Destination: Round Point Deido</p>
+              <span class="status ongoing-status">In Progress</span>
+            </div>
+          </div>
+          <button class="track-btn">Track Ride</button>
+        </div>
+
+        <hr/>
+
+        <!-- Ride Categories -->
+        <h3>Ride Types</h3>
+        <div class="ride-type-container">
+          <div class="ride-type">
+            <img src="../images/images (17).jpeg" alt="Standard Ride">
+            <h4>Standard</h4>
+            <p>Affordable daily rides</p>
+          </div>
+
+          <div class="ride-type">
+            <img src="../images/images (4).jpeg" alt="Premium Ride">
+            <h4>Premium</h4>
+            <p>Luxury, comfort & privacy</p>
+          </div>
+
+          <div class="ride-type">
+            <img src="../images/images (5).jpeg" alt="Shared Ride">
+            <h4>Ride Share</h4>
+            <p>Share and save more</p>
+          </div>
+        </div>
+
+        <hr/>
+
+        <!-- Past Rides -->
+        <h3>Past Rides</h3>
+        <div class="ride-history">
+
+          <div class="history-card">
+            <div>
+              <h4>Bonamoussadi → Bonanjo</h4>
+              <small>Driver: Emmanuel</small>
+              <br>
+              <span class="status completed-status">Completed</span>
+            </div>
+            <span class="price">3,500 XAF</span>
+          </div>
+          
+          <div class="history-card">
+            <div>
+              <h4>Rail → Carrefour Mutzig</h4>
+              <small>Driver: Kevin</small>
+              <br>
+              <span class="status cancelled-status">Cancelled</span>
+            </div>
+            <span class="price">0 XAF</span>
+          </div>
+
+          <div class="history-card">
+            <div>
+              <h4>Bonaberi → Akwa</h4>
+              <small>Driver: Michael</small>
+              <br>
+              <span class="status completed-status">Completed</span>
+            </div>
+            <span class="price">2,000 XAF</span>
+          </div>
+
+        </div>
+
+        <!-- Floating Action Button -->
+        <div class="fab" title="Book a ride">
+          <i class="fa-solid fa-taxi"></i>
+        </div>
+      </div>
+
+
+      <!-- Food Section -->
+      <div id="Food" class="section">
+          <h2>Food Orders</h2>
+          <p>Browse restaurants, explore meals, add to cart, and check order history.</p>
+
+          <!-- Search Bar -->
+          <div class="food-search">
+              <input type="text" placeholder="Search meals, restaurants, cuisine...">
+              <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+
+          <!-- Food Categories -->
+          <h3>Categories</h3>
+          <div class="food-categories">
+              <div class="food-cat">
+                  <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=400&q=80" alt="">
+                  <span>Fast Food</span>
+              </div>
+              <div class="food-cat">
+                  <img src="../images/download (11).jpeg" alt="">
+                  <span>Local Meals</span>
+              </div>
+              <div class="food-cat">
+                  <img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&fit=crop&w=400&q=80" alt="">
+                  <span>Healthy</span>
+              </div>
+              <div class="food-cat">
+                  <img src="../images/download (12).jpeg" alt="">
+                  <span>Drinks</span>
+              </div>
+          </div>
+
+          <hr>
+
+          <!-- Featured Meals -->
+          <h3>Featured Meals</h3>
+          <div class="meal-list">
+
+              <div class="meal-card">
+                  <img src="https://images.unsplash.com/photo-1604152135912-04a022e23696?auto=format&fit=crop&w=400&q=80" alt="Burger">
+                  <div class="meal-info">
+                      <h4>Cheese Beef Burger</h4>
+                      <p>Juicy grilled beef patty with melted cheese & veggies.</p>
+                      <strong>3,200 XAF</strong>
+                      <button class="add-btn">Add to Cart</button>
+                  </div>
+              </div>
+
+              <div class="meal-card">
+                  <img src="../images/download (10).jpeg" alt="Ndolé">
+                  <div class="meal-info">
+                      <h4>Ndolé & Plantains</h4>
+                      <p>Traditional Cameroonian dish with peanuts & spices.</p>
+                      <strong>2,500 XAF</strong>
+                      <button class="add-btn">Add to Cart</button>
+                  </div>
+              </div>
+
+              <div class="meal-card">
+                  <img src="../images/download (9).jpeg" alt="Salad">
+                  <div class="meal-info">
+                      <h4>Chicken Healthy Salad</h4>
+                      <p>Fresh greens topped with seasoned grilled chicken.</p>
+                      <strong>3,800 XAF</strong>
+                      <button class="add-btn">Add to Cart</button>
+                  </div>
+              </div>
+
+          </div>
+
+          <hr>
+
+          <!-- Order History -->
+          <h3>Recent Orders</h3>
+          <div class="order-history">
+
+              <div class="order-card">
+                  <div>
+                      <h4>Shawarma & Juice Combo</h4>
+                      <small>Sweet Bites Restaurant • Delivered</small>
+                      <span class="status completed">Completed</span>
+                  </div>
+                  <strong>3,900 XAF</strong>
+              </div>
+
+              <div class="order-card">
+                  <div>
+                      <h4>Chicken Pizza</h4>
+                      <small>Pizza Hub • Cancelled</small>
+                      <span class="status cancelled">Cancelled</span>
+                  </div>
+                  <strong>0 XAF</strong>
+              </div>
+
+              <div class="order-card">
+                  <div>
+                      <h4>Jollof Rice & Chicken</h4>
+                      <small>Royal Kitchen • Delivered</small>
+                      <span class="status completed">Completed</span>
+                  </div>
+                  <strong>2,800 XAF</strong>
+              </div>
+
+          </div>
+
+          <!-- Floating Cart Button -->
+          <div class="fab" title="View Cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </div>
+      </div>
+
+
+      <!-- Profile Section -->
+      <div id="Profile" class="section">
+        
+        <!-- User Header -->
+        <div class="profile-header">
+          <img src="../images/nadine.jpeg" alt="User Avatar">
+          <h3>Nadine Patricia</h3>
+          <p class="user-tag">@nadine_user123</p>
+          <button class="edit-profile-btn">Edit Profile</button>
+        </div>
+
+        <!-- Wallet & Points -->
+        <div class="wallet-cards">
+          <div class="wallet-item">
+            <h4>Account Balance</h4>
+            <strong>12,400 XAF</strong>
+          </div>
+          <div class="wallet-item">
+            <h4>Reward Points</h4>
+            <strong>320 pts</strong>
+          </div>
+        </div>
+
+        <!-- Personal Info -->
+        <h3>Personal Information</h3>
+        <div class="info-list">
+          <div><span>Name</span><strong>Nadine Patricia</strong></div>
+          <div><span>Email</span><strong>nadine@mail.com</strong></div>
+          <div><span>Phone</span><strong>+237 650 123 456</strong></div>
+          <div><span>Address</span><strong>Douala, Cameroon</strong></div>
+        </div>
+
+        <!-- Account Settings -->
+        <h3>Settings</h3>
+        <ul class="settings-list">
+          <li><i class="fa-solid fa-bell"></i> Notifications</li>
+          <li><i class="fa-solid fa-lock"></i> Change Password</li>
+          <li><i class="fa-solid fa-location-dot"></i> Saved Addresses</li>
+          <li><i class="fa-solid fa-car"></i> My Ride Preferences</li>
+          <li><i class="fa-solid fa-utensils"></i> Food Preferences</li>
+          <li><i class="fa-solid fa-headset"></i> Help & Support</li>
+        </ul>
+
+        <!-- Partner Opportunities -->
+        <h3 style="margin-top: 3rem;">Earn with SwiftRide</h3>
+        <p style="color: #666; margin-bottom: 1.5rem;">Join our community of drivers and restaurant partners</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+          <!-- Become a Driver Card -->
+          <div style="background: linear-gradient(135deg, #ec1304 0%, #c41103 100%); border-radius: 12px; padding: 1.5rem; color: white; cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+              <i class="fa-solid fa-taxi" style="font-size: 2rem;"></i>
+              <h4 style="margin: 0;">Become a Driver</h4>
+            </div>
+            <p style="margin: 0 0 1rem 0; font-size: 0.9rem; opacity: 0.95;">Earn extra money by driving on your own schedule</p>
+            <ul style="margin: 0 0 1rem 0; padding-left: 1.5rem; font-size: 0.85rem; opacity: 0.9;">
+              <li>Flexible working hours</li>
+              <li>Quick payouts</li>
+              <li>24/7 support</li>
+            </ul>
+            <button onclick="window.location.href='driver-signup.html'" style="background: white; color: #ec1304; border: none; padding: 0.65rem 1.5rem; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)'" onmouseout="this.style.boxShadow='none'">
+              Get Started
+            </button>
+          </div>
+
+          <!-- Become a Restaurant Card -->
+          <div style="background: linear-gradient(135deg, #ff6f00 0%, #e65100 100%); border-radius: 12px; padding: 1.5rem; color: white; cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+              <i class="fa-solid fa-utensils" style="font-size: 2rem;"></i>
+              <h4 style="margin: 0;">Partner Restaurant</h4>
+            </div>
+            <p style="margin: 0 0 1rem 0; font-size: 0.9rem; opacity: 0.95;">Expand your restaurant reach with our delivery platform</p>
+            <ul style="margin: 0 0 1rem 0; padding-left: 1.5rem; font-size: 0.85rem; opacity: 0.9;">
+              <li>More customers</li>
+              <li>Easy management</li>
+              <li>Better margins</li>
+            </ul>
+            <button onclick="window.location.href='restaurant-signup.html'" style="background: white; color: #ff6f00; border: none; padding: 0.65rem 1.5rem; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)'" onmouseout="this.style.boxShadow='none'">
+              Get Started
+            </button>
+          </div>
+        </div>
+
+        <!-- Logout -->
+        <button class="logout-btn">
+          <i class="fa-solid fa-right-from-brain"></i> Logout
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <div class="active" data-name="Home">
+        <i class="fa-solid fa-house"></i><span>Home</span>
+      </div>
+      <div data-name="Rides">
+        <i class="fa-solid fa-car"></i><span>Rides</span>
+      </div>
+      
+      <div data-name="Food">
+        <i class="fa-solid fa-burger"></i><span>Food</span>
+      </div>
+      <div data-name="Profile">
+        <i class="fa-solid fa-user"></i><span>Profile</span>
+      </div>
+    </div>
+  </div>
+  <!-- Ride Booking Modal (From Option #3) -
+  <div id="rideModal" class="modal">
+    <div class="modal-content">
+      <h3>Book a Ride</h3>
+      <input type="text" placeholder="Pickup Location">
+      <input type="text" placeholder="Drop-off Location">
+      <button>Request Ride</button>
+    </div>
+  </div>
+
+   Existing Floating Button replaced with Modal Action 
+  <div class="fab" id="modalFab" title="Book a ride">
+    <i class="fa-solid fa-taxi"></i>
+  </div>-->
+
+  <script>
+    /* Ride Modal Control
+    document.getElementById("modalFab").onclick = () => {
+      document.getElementById("rideModal").style.display = "flex";
+    };
+
+    document.getElementById("rideModal").onclick = (e) => {
+      if (e.target === e.currentTarget) {
+        e.currentTarget.style.display = "none";
+      }
+    };*/
+
+  </script>
+  <script>
+    // Side Navigation Functions
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "280px";
+      document.getElementById("mainContent").style.marginLeft = "280px";
+      document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("mainContent").style.marginLeft = "0";
+      document.body.style.backgroundColor = "#f3f3f3";
+    }
+
+    // Close sidenav when clicking outside on mobile
+    document.addEventListener('click', function(event) {
+      const sidenav = document.getElementById('mySidenav');
+      const menuToggle = document.querySelector('.menu-toggle');
+      
+      if (window.innerWidth <= 768 && 
+          !sidenav.contains(event.target) && 
+          !menuToggle.contains(event.target) && 
+          sidenav.style.width !== '0px' && 
+          sidenav.style.width !== '') {
+        closeNav();
+      }
+    });
+
+    // Handle section navigation from sidenav
+    document.querySelectorAll('.sidenav-menu a[data-section]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const sectionName = this.getAttribute('data-section');
+        
+        // Update active section
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(sectionName).classList.add('active');
+        
+        // Update bottom nav
+        document.querySelectorAll('.bottom-nav div').forEach(item => item.classList.remove('active'));
+        document.querySelector(`.bottom-nav div[data-name="${sectionName}"]`).classList.add('active');
+        
+        // Update topbar title
+        document.querySelector('.topbar-title').textContent = sectionName;
+        
+        // Close sidenav on mobile
+        if (window.innerWidth <= 768) {
+          closeNav();
+        }
+      });
+    });
+  </script>
+  <script src="js/script.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

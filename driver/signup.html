@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become a Driver - SwiftRide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <style>
+        .driver-signup-container {
+            background: linear-gradient(135deg, #ec1304 0%, #c41103 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .driver-signup-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 600px;
+            width: 100%;
+            padding: 2.5rem;
+        }
+
+        .driver-signup-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .driver-signup-header h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .driver-signup-header p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .benefit-item i {
+            color: #ec1304;
+            font-size: 1.3rem;
+            margin-top: 0.3rem;
+            min-width: 24px;
+        }
+
+        .benefit-item h4 {
+            margin: 0 0 0.3rem 0;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .benefit-item p {
+            margin: 0;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h3 {
+            color: #333;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .form-section h3 i {
+            color: #ec1304;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-list {
+                grid-template-columns: 1fr;
+            }
+
+            .driver-signup-card {
+                padding: 1.5rem;
+            }
+        }
+
+        .requirements-list {
+            background-color: #fff3e0;
+            border-left: 4px solid #ec1304;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+        }
+
+        .requirements-list h4 {
+            color: #ec1304;
+            margin: 0 0 0.75rem 0;
+        }
+
+        .requirements-list ul {
+            margin: 0;
+            padding-left: 1.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .requirements-list li {
+            margin-bottom: 0.4rem;
+        }
+
+        .signup-action {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .signup-action button {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .signup-action .btn-primary {
+            background: linear-gradient(135deg, #ec1304 0%, #c41103 100%);
+            color: white;
+        }
+
+        .signup-action .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(236, 19, 4, 0.3);
+        }
+
+        .signup-action .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .signup-action .btn-secondary:hover {
+            background: #e8e8e8;
+        }
+    </style>
+</head>
+<body>
+    <div class="driver-signup-container">
+        <div class="driver-signup-card">
+            <!-- Header -->
+            <div class="driver-signup-header">
+                <h1><i class="fa-solid fa-taxi"></i> Join as a Driver</h1>
+                <p>Start earning with SwiftRide today</p>
+            </div>
+
+            <!-- Benefits -->
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <div>
+                        <h4>Earn More</h4>
+                        <p>Flexible rates and bonuses</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <div>
+                        <h4>Flexible Hours</h4>
+                        <p>Work whenever you want</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-shield"></i>
+                    <div>
+                        <h4>Safety First</h4>
+                        <p>24/7 safety support</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-headset"></i>
+                    <div>
+                        <h4>24/7 Support</h4>
+                        <p>Always here to help</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Requirements -->
+            <div class="requirements-list">
+                <h4><i class="fa-solid fa-check-circle"></i> Requirements</h4>
+                <ul>
+                    <li>Valid driver's license</li>
+                    <li>Vehicle registration (less than 5 years old)</li>
+                    <li>Proof of insurance</li>
+                    <li>Clean driving record</li>
+                    <li>Smartphone with data plan</li>
+                    <li>Valid government ID</li>
+                </ul>
+            </div>
+
+            <!-- Signup Form -->
+            <form id="driverSignupForm" class="auth-form">
+                <!-- Personal Information -->
+                <div class="form-section">
+                    <h3><i class="fa-solid fa-user"></i> Personal Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-user"></i>
+                                <input type="text" id="firstName" placeholder="First name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-user"></i>
+                                <input type="text" id="lastName" placeholder="Last name" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" id="email" placeholder="Email address" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-phone"></i>
+                                <input type="tel" id="phone" placeholder="+237 XXX XXX XXX" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle Information -->
+                <div class="form-section">
+                    <h3><i class="fa-solid fa-car"></i> Vehicle Information</h3>
+                    
+                    <div class="form-group">
+                        <label for="vehicleType">Vehicle Type</label>
+                        <div class="input-group">
+                            <i class="fa-solid fa-list"></i>
+                            <select id="vehicleType" required>
+                                <option value="">Select vehicle type</option>
+                                <option value="car">Car</option>
+                                <option value="bike">Motorcycle/Bike</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="vehicleMake">Vehicle Make</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-car"></i>
+                                <input type="text" id="vehicleMake" placeholder="e.g., Toyota" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="vehicleModel">Vehicle Model</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-car"></i>
+                                <input type="text" id="vehicleModel" placeholder="e.g., Camry" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="vehicleYear">Year</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-calendar"></i>
+                                <input type="number" id="vehicleYear" placeholder="2020" min="2019" max="2026" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="licensePlate">License Plate</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-id-card"></i>
+                                <input type="text" id="licensePlate" placeholder="ABC 123" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Security -->
+                <div class="form-section">
+                    <h3><i class="fa-solid fa-lock"></i> Account Security</h3>
+                    
+                    <div class="form-group">
+                        <label for="password">Create Password</label>
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="password" placeholder="Create a strong password" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms -->
+                <div class="form-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="termsAgree" required>
+                        <span class="checkmark"></span>
+                        I agree to SwiftRide's <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Driver Agreement</a>
+                    </label>
+                </div>
+
+                <!-- Actions -->
+                <div class="signup-action">
+                    <button type="button" class="btn-secondary" onclick="window.history.back()">
+                        <i class="fa-solid fa-arrow-left"></i> Cancel
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        <span class="btn-text">Complete Registration</span>
+                        <div class="btn-loader" style="display: none;">
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Login Link -->
+                <p style="text-align: center; margin-top: 1.5rem; color: #666;">
+                    Already a driver? <a href="driver-login.html" style="color: #ec1304; text-decoration: none; font-weight: 600;">Sign in here</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = input.nextElementSibling.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        document.getElementById('driverSignupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const vehicleMake = document.getElementById('vehicleMake').value;
+            const vehicleModel = document.getElementById('vehicleModel').value;
+            const vehicleYear = document.getElementById('vehicleYear').value;
+            const licensePlate = document.getElementById('licensePlate').value;
+            const termsAgree = document.getElementById('termsAgree').checked;
+
+            // Validation
+            if (!firstName || !lastName || !email || !phone) {
+                alert('Please fill in all personal information fields');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long');
+                return;
+            }
+
+            if (!vehicleMake || !vehicleModel || !vehicleYear || !licensePlate) {
+                alert('Please fill in all vehicle information');
+                return;
+            }
+
+            if (!termsAgree) {
+                alert('Please agree to the terms and conditions');
+                return;
+            }
+
+            // Show success message
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Registration Successful!';
+            submitBtn.style.background = '#4caf50';
+
+            // Save to localStorage (for demo)
+            const driverData = {
+                firstName, lastName, email, phone,
+                vehicleMake, vehicleModel, vehicleYear, licensePlate,
+                registrationDate: new Date().toLocaleDateString()
+            };
+            
+            localStorage.setItem('driverSignupData', JSON.stringify(driverData));
+
+            // Redirect to login
+            setTimeout(() => {
+                window.location.href = 'driver-login.html';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

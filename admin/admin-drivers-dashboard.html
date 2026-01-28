@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drivers Dashboard - SwiftRide Admin</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../favicon_io/site.webmanifest">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="admin-header-left">
+            <button class="menu-toggle" onclick="toggleAdminSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span> Admin</h2>
+        </div>
+        <div class="admin-header-right">
+            <div class="admin-notifications">
+                <i class="fa-solid fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="admin-user">
+                <img src="../nadine.jpeg" alt="Admin Avatar" class="admin-avatar">
+                <span>Admin User</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Sidebar -->
+    <div class="admin-sidebar" id="adminSidebar">
+        <nav class="admin-nav">
+            <a href="admin-dashboard.html">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="admin-users.html">
+                <i class="fa-solid fa-users"></i> Users
+            </a>
+            <a href="admin-drivers.html">
+                <i class="fa-solid fa-car"></i> Drivers
+            </a>
+            <a href="admin-rides.html">
+                <i class="fa-solid fa-route"></i> Rides
+            </a>
+            <a href="admin-orders.html">
+                <i class="fa-solid fa-utensils"></i> Orders
+            </a>
+            <a href="admin-restaurants.html">
+                <i class="fa-solid fa-store"></i> Restaurants
+            </a>
+            <a href="admin-analytics.html">
+                <i class="fa-solid fa-chart-bar"></i> Analytics
+            </a>
+            <a href="admin-settings.html">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="adminLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-content">
+        <div class="dashboard-header">
+            <h1><i class="fa-solid fa-car"></i> Drivers Dashboard</h1>
+            <div class="date-range">
+                <select id="timeRange">
+                    <option value="7">Last 7 days</option>
+                    <option value="30">Last 30 days</option>
+                    <option value="90">Last 3 months</option>
+                    <option value="365">Last year</option>
+                </select>
+                <button class="btn-primary" onclick="updateDriversDashboard()">Update</button>
+            </div>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="totalDrivers">285</h3>
+                    <p>Total Drivers</p>
+                    <span class="stat-change positive">+12 this month</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-check-circle"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="activeDrivers">218</h3>
+                    <p>Active Drivers</p>
+                    <span class="stat-change positive">76% active</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-route"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="totalRidesCompleted">8,456</h3>
+                    <p>Total Rides Completed</p>
+                    <span class="stat-change positive">+2.3% vs last period</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="driverEarnings">$125,650</h3>
+                    <p>Driver Earnings</p>
+                    <span class="stat-change positive">+8.7% vs last period</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="avgRating">4.7</h3>
+                    <p>Average Rating</p>
+                    <span class="stat-change neutral">Out of 5.0</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-hourglass-end"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="avgCompletionRate">96%</h3>
+                    <p>Avg. Completion Rate</p>
+                    <span class="stat-change positive">Excellent performance</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <div class="chart-container">
+                <h3>Driver Earnings Trend</h3>
+                <canvas id="driverEarningsChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3>Rides Completion Trend</h3>
+                <canvas id="ridesCompletionChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Driver Distribution -->
+        <div class="charts-section">
+            <div class="chart-container">
+                <h3>Driver Status Distribution</h3>
+                <canvas id="driverStatusChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3>Top Performing Drivers (by rides)</h3>
+                <canvas id="topDriversChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Top Performers Table -->
+        <div class="content-card">
+            <h3>Top Performing Drivers</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Driver Name</th>
+                        <th>Total Rides</th>
+                        <th>Avg Rating</th>
+                        <th>Earnings</th>
+                        <th>Completion Rate</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Alex Rodriguez</td>
+                        <td>342</td>
+                        <td><span class="rating-badge">4.9</span></td>
+                        <td>$8,550</td>
+                        <td><span class="progress-bar"><span style="width: 99%"></span></span> 99%</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Sarah Johnson</td>
+                        <td>298</td>
+                        <td><span class="rating-badge">4.8</span></td>
+                        <td>$7,450</td>
+                        <td><span class="progress-bar"><span style="width: 97%"></span></span> 97%</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Marcus Thompson</td>
+                        <td>267</td>
+                        <td><span class="rating-badge">4.7</span></td>
+                        <td>$6,680</td>
+                        <td><span class="progress-bar"><span style="width: 96%"></span></span> 96%</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Jessica Lee</td>
+                        <td>245</td>
+                        <td><span class="rating-badge">4.6</span></td>
+                        <td>$6,125</td>
+                        <td><span class="progress-bar"><span style="width: 94%"></span></span> 94%</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>David Chen</td>
+                        <td>234</td>
+                        <td><span class="rating-badge">4.5</span></td>
+                        <td>$5,850</td>
+                        <td><span class="progress-bar"><span style="width: 92%"></span></span> 92%</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Driver Performance Issues -->
+        <div class="content-card">
+            <h3>Drivers Needing Attention</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Driver Name</th>
+                        <th>Issue</th>
+                        <th>Status</th>
+                        <th>Last Activity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Robert Wilson</td>
+                        <td><i class="fa-solid fa-star"></i> Low Rating (3.2)</td>
+                        <td><span class="status-badge status-warning">Warning</span></td>
+                        <td>2 hours ago</td>
+                        <td><button class="btn-secondary">Review</button></td>
+                    </tr>
+                    <tr>
+                        <td>Emily Davis</td>
+                        <td><i class="fa-solid fa-exclamation-triangle"></i> High Cancellation Rate</td>
+                        <td><span class="status-badge status-warning">Warning</span></td>
+                        <td>5 hours ago</td>
+                        <td><button class="btn-secondary">Review</button></td>
+                    </tr>
+                    <tr>
+                        <td>Kevin Garcia</td>
+                        <td><i class="fa-solid fa-clock"></i> Inactive for 7 days</td>
+                        <td><span class="status-badge status-inactive">Inactive</span></td>
+                        <td>7 days ago</td>
+                        <td><button class="btn-secondary">Contact</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="../JS/admin.js"></script>
+    <script>
+        // Check admin authentication
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAdminAuth();
+            
+            // Initialize drivers dashboard charts
+            if (document.getElementById('driverEarningsChart')) {
+                initDriversDashboardCharts();
+            }
+        });
+
+        // Update drivers dashboard
+        function updateDriversDashboard() {
+            const timeRange = document.getElementById('timeRange').value;
+            console.log(`Updating drivers dashboard for ${timeRange} days`);
+            initDriversDashboardCharts();
+        }
+
+        // Initialize drivers dashboard charts
+        function initDriversDashboardCharts() {
+            // Driver Earnings Trend Chart
+            const earningsCtx = document.getElementById('driverEarningsChart');
+            if (earningsCtx && !earningsCtx.chart) {
+                earningsCtx.chart = new Chart(earningsCtx.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                        datasets: [{
+                            label: 'Total Driver Earnings',
+                            data: [28500, 31200, 34800, 39150],
+                            borderColor: '#388e3c',
+                            backgroundColor: 'rgba(56, 142, 60, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Rides Completion Trend Chart
+            const completionCtx = document.getElementById('ridesCompletionChart');
+            if (completionCtx && !completionCtx.chart) {
+                completionCtx.chart = new Chart(completionCtx.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                        datasets: [{
+                            label: 'Completed Rides',
+                            data: [1850, 2120, 2340, 2166],
+                            borderColor: '#1976d2',
+                            backgroundColor: 'rgba(25, 118, 210, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }, {
+                            label: 'Cancelled Rides',
+                            data: [85, 92, 78, 65],
+                            borderColor: '#d32f2f',
+                            backgroundColor: 'rgba(211, 47, 47, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Driver Status Distribution Chart
+            const statusCtx = document.getElementById('driverStatusChart');
+            if (statusCtx && !statusCtx.chart) {
+                statusCtx.chart = new Chart(statusCtx.getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Active', 'Inactive', 'Suspended', 'Pending'],
+                        datasets: [{
+                            data: [218, 45, 12, 10],
+                            backgroundColor: [
+                                '#388e3c',
+                                '#fbc02d',
+                                '#d32f2f',
+                                '#1976d2'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Top Drivers Chart
+            const topDriversCtx = document.getElementById('topDriversChart');
+            if (topDriversCtx && !topDriversCtx.chart) {
+                topDriversCtx.chart = new Chart(topDriversCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Alex R.', 'Sarah J.', 'Marcus T.', 'Jessica L.', 'David C.'],
+                        datasets: [{
+                            label: 'Rides Completed',
+                            data: [342, 298, 267, 245, 234],
+                            backgroundColor: '#ec1304'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

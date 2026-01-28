@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Login - SwiftRide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/auth.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff6f00 0%, #e65100 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            width: 100%;
+            max-width: 450px;
+            margin: 1rem;
+        }
+
+        .login-header {
+            background: linear-gradient(135deg, #ff6f00 0%, #e65100 100%);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .login-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .login-header p {
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        .login-content {
+            padding: 2rem 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #ff6f00;
+            box-shadow: 0 0 0 3px rgba(255, 111, 0, 0.1);
+        }
+
+        .password-toggle {
+            position: relative;
+        }
+
+        .password-toggle button {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #999;
+            font-size: 1.1rem;
+            padding: 0.5rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checkbox-group a {
+            color: #ff6f00;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.85rem;
+            background: linear-gradient(135deg, #ff6f00 0%, #e65100 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 111, 0, 0.4);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .error-message {
+            display: none;
+            background: #ffebee;
+            color: #c62828;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #c62828;
+        }
+
+        .demo-credentials {
+            background: #fff3e0;
+            border: 1px solid #ffe0b2;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .demo-credentials h3 {
+            color: #e65100;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .demo-credentials p {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 0.3rem 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .login-footer {
+            text-align: center;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e0e0e0;
+            background: #f5f5f5;
+        }
+
+        .login-footer p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .login-footer a {
+            color: #ff6f00;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .signup-link {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .login-container {
+                margin: 0;
+                border-radius: 0;
+                min-height: 100vh;
+            }
+
+            .login-header {
+                padding: 1.5rem 1rem;
+            }
+
+            .login-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .login-content {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Login Header -->
+        <div class="login-header">
+            <h1>
+                <i class="fa-solid fa-utensils"></i> SwiftRide Restaurant
+            </h1>
+            <p>Manage your orders and menu</p>
+        </div>
+
+        <!-- Login Content -->
+        <div class="login-content">
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage">
+                <strong id="errorText"></strong>
+            </div>
+
+            <!-- Demo Credentials -->
+            <div class="demo-credentials">
+                <h3><i class="fa-solid fa-circle-info"></i> Demo Credentials</h3>
+                <p><strong>Email:</strong> restaurant@swiftride.com</p>
+                <p><strong>Password:</strong> restaurant123</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="restaurantLoginForm">
+                <div class="form-group">
+                    <label for="restaurantEmail">Email Address</label>
+                    <input type="email" id="restaurantEmail" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group password-toggle">
+                    <label for="restaurantPassword">Password</label>
+                    <input type="password" id="restaurantPassword" placeholder="Enter your password" required>
+                    <button type="button" onclick="togglePassword('restaurantPassword')">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" id="rememberRestaurant">
+                        Remember me
+                    </label>
+                    <a href="#forgot">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <i class="fa-solid fa-sign-in-alt"></i> Login to Dashboard
+                </button>
+            </form>
+        </div>
+
+        <!-- Login Footer -->
+        <div class="login-footer">
+            <p style="margin-bottom: 1rem;">New restaurant? <a href="restaurant-signup.html">Create a restaurant account</a></p>
+            <p style="font-size: 0.85rem; border-top: 1px solid #e0e0e0; padding-top: 1rem; margin-top: 1rem;">
+                Not a restaurant? <a href="index.html" style="color: #ff6f00;">Return to main app</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="JS/restaurant.js"></script>
+</body>
+</html>

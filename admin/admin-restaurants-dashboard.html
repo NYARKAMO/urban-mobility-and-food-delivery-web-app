@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants Dashboard - SwiftRide Admin</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../favicon_io/site.webmanifest">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="admin-header-left">
+            <button class="menu-toggle" onclick="toggleAdminSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span> Admin</h2>
+        </div>
+        <div class="admin-header-right">
+            <div class="admin-notifications">
+                <i class="fa-solid fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="admin-user">
+                <img src="../nadine.jpeg" alt="Admin Avatar" class="admin-avatar">
+                <span>Admin User</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Sidebar -->
+    <div class="admin-sidebar" id="adminSidebar">
+        <nav class="admin-nav">
+            <a href="admin-dashboard.html">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="admin-users.html">
+                <i class="fa-solid fa-users"></i> Users
+            </a>
+            <a href="admin-drivers.html">
+                <i class="fa-solid fa-car"></i> Drivers
+            </a>
+            <a href="admin-rides.html">
+                <i class="fa-solid fa-route"></i> Rides
+            </a>
+            <a href="admin-orders.html">
+                <i class="fa-solid fa-utensils"></i> Orders
+            </a>
+            <a href="admin-restaurants.html">
+                <i class="fa-solid fa-store"></i> Restaurants
+            </a>
+            <a href="admin-analytics.html">
+                <i class="fa-solid fa-chart-bar"></i> Analytics
+            </a>
+            <a href="admin-settings.html">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="adminLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-content">
+        <div class="dashboard-header">
+            <h1><i class="fa-solid fa-store"></i> Restaurants Dashboard</h1>
+            <div class="date-range">
+                <select id="timeRange">
+                    <option value="7">Last 7 days</option>
+                    <option value="30">Last 30 days</option>
+                    <option value="90">Last 3 months</option>
+                    <option value="365">Last year</option>
+                </select>
+                <button class="btn-primary" onclick="updateRestaurantsDashboard()">Update</button>
+            </div>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-store"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="totalRestaurants">67</h3>
+                    <p>Total Restaurants</p>
+                    <span class="stat-change positive">+5 this month</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-check-circle"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="activeRestaurants">58</h3>
+                    <p>Active Restaurants</p>
+                    <span class="stat-change positive">87% active</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="totalOrders">3,245</h3>
+                    <p>Total Orders</p>
+                    <span class="stat-change positive">+15.2% vs last period</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="restaurantRevenue">$89,340</h3>
+                    <p>Total Revenue</p>
+                    <span class="stat-change positive">+22.3% vs last period</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-percentage"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="platformCommission">$8,934</h3>
+                    <p>Platform Commission (10%)</p>
+                    <span class="stat-change positive">Growing commission</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="avgRestaurantRating">4.4</h3>
+                    <p>Average Rating</p>
+                    <span class="stat-change neutral">Out of 5.0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <div class="chart-container">
+                <h3>Restaurant Revenue Trend</h3>
+                <canvas id="restaurantRevenueChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3>Orders Volume Trend</h3>
+                <canvas id="ordersVolumeChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Distribution Charts -->
+        <div class="charts-section">
+            <div class="chart-container">
+                <h3>Restaurant Status Distribution</h3>
+                <canvas id="restaurantStatusChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3>Orders by Cuisine Type</h3>
+                <canvas id="cuisineTypeChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Top Restaurants Table -->
+        <div class="content-card">
+            <h3>Top Performing Restaurants</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Restaurant Name</th>
+                        <th>Cuisine</th>
+                        <th>Total Orders</th>
+                        <th>Avg Rating</th>
+                        <th>Revenue</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Pizza Palace</td>
+                        <td>Italian</td>
+                        <td>456</td>
+                        <td><span class="rating-badge">4.8</span></td>
+                        <td>$18,240</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Dragon's Wok</td>
+                        <td>Chinese</td>
+                        <td>398</td>
+                        <td><span class="rating-badge">4.6</span></td>
+                        <td>$15,920</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Sushi Paradise</td>
+                        <td>Japanese</td>
+                        <td>367</td>
+                        <td><span class="rating-badge">4.7</span></td>
+                        <td>$14,680</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Burger Junction</td>
+                        <td>American</td>
+                        <td>342</td>
+                        <td><span class="rating-badge">4.5</span></td>
+                        <td>$13,680</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Spice Route</td>
+                        <td>Indian</td>
+                        <td>289</td>
+                        <td><span class="rating-badge">4.4</span></td>
+                        <td>$11,560</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Restaurant Performance Issues -->
+        <div class="content-card">
+            <h3>Restaurants Needing Attention</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Restaurant Name</th>
+                        <th>Issue</th>
+                        <th>Status</th>
+                        <th>Last Order</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Taco Fiesta</td>
+                        <td><i class="fa-solid fa-star"></i> Low Rating (3.1)</td>
+                        <td><span class="status-badge status-warning">Warning</span></td>
+                        <td>4 hours ago</td>
+                        <td><button class="btn-secondary">Review</button></td>
+                    </tr>
+                    <tr>
+                        <td>Pasta Palace</td>
+                        <td><i class="fa-solid fa-exclamation-triangle"></i> High Cancellation Rate (18%)</td>
+                        <td><span class="status-badge status-warning">Warning</span></td>
+                        <td>6 hours ago</td>
+                        <td><button class="btn-secondary">Review</button></td>
+                    </tr>
+                    <tr>
+                        <td>Grill House</td>
+                        <td><i class="fa-solid fa-clock"></i> No Orders in 3 days</td>
+                        <td><span class="status-badge status-inactive">Inactive</span></td>
+                        <td>3 days ago</td>
+                        <td><button class="btn-secondary">Contact</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Cuisine Analysis -->
+        <div class="content-card">
+            <h3>Popular Cuisines Analysis</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Cuisine Type</th>
+                        <th>Restaurants</th>
+                        <th>Total Orders</th>
+                        <th>Avg Rating</th>
+                        <th>Market Share</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Italian</td>
+                        <td>12</td>
+                        <td>456</td>
+                        <td><span class="rating-badge">4.6</span></td>
+                        <td><span class="progress-bar"><span style="width: 18%"></span></span> 18%</td>
+                    </tr>
+                    <tr>
+                        <td>Chinese</td>
+                        <td>10</td>
+                        <td>398</td>
+                        <td><span class="rating-badge">4.5</span></td>
+                        <td><span class="progress-bar"><span style="width: 16%"></span></span> 16%</td>
+                    </tr>
+                    <tr>
+                        <td>Japanese</td>
+                        <td>8</td>
+                        <td>367</td>
+                        <td><span class="rating-badge">4.7</span></td>
+                        <td><span class="progress-bar"><span style="width: 14%"></span></span> 14%</td>
+                    </tr>
+                    <tr>
+                        <td>American</td>
+                        <td>15</td>
+                        <td>342</td>
+                        <td><span class="rating-badge">4.4</span></td>
+                        <td><span class="progress-bar"><span style="width: 13%"></span></span> 13%</td>
+                    </tr>
+                    <tr>
+                        <td>Indian</td>
+                        <td>9</td>
+                        <td>289</td>
+                        <td><span class="rating-badge">4.3</span></td>
+                        <td><span class="progress-bar"><span style="width: 11%"></span></span> 11%</td>
+                    </tr>
+                    <tr>
+                        <td>Mexican</td>
+                        <td>7</td>
+                        <td>195</td>
+                        <td><span class="rating-badge">4.2</span></td>
+                        <td><span class="progress-bar"><span style="width: 8%"></span></span> 8%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="../JS/admin.js"></script>
+    <script>
+        // Check admin authentication
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAdminAuth();
+            
+            // Initialize restaurants dashboard charts
+            if (document.getElementById('restaurantRevenueChart')) {
+                initRestaurantsDashboardCharts();
+            }
+        });
+
+        // Update restaurants dashboard
+        function updateRestaurantsDashboard() {
+            const timeRange = document.getElementById('timeRange').value;
+            console.log(`Updating restaurants dashboard for ${timeRange} days`);
+            initRestaurantsDashboardCharts();
+        }
+
+        // Initialize restaurants dashboard charts
+        function initRestaurantsDashboardCharts() {
+            // Restaurant Revenue Trend Chart
+            const revenueCtx = document.getElementById('restaurantRevenueChart');
+            if (revenueCtx && !revenueCtx.chart) {
+                revenueCtx.chart = new Chart(revenueCtx.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                        datasets: [{
+                            label: 'Total Restaurant Revenue',
+                            data: [18500, 21200, 25800, 23840],
+                            borderColor: '#ff6f00',
+                            backgroundColor: 'rgba(255, 111, 0, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Orders Volume Trend Chart
+            const ordersCtx = document.getElementById('ordersVolumeChart');
+            if (ordersCtx && !ordersCtx.chart) {
+                ordersCtx.chart = new Chart(ordersCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                        datasets: [{
+                            label: 'Completed Orders',
+                            data: [680, 750, 895, 920],
+                            backgroundColor: '#1976d2'
+                        }, {
+                            label: 'Cancelled Orders',
+                            data: [45, 38, 42, 35],
+                            backgroundColor: '#d32f2f'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Restaurant Status Distribution Chart
+            const statusCtx = document.getElementById('restaurantStatusChart');
+            if (statusCtx && !statusCtx.chart) {
+                statusCtx.chart = new Chart(statusCtx.getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Active', 'Inactive', 'Suspended', 'Pending Approval'],
+                        datasets: [{
+                            data: [58, 5, 2, 2],
+                            backgroundColor: [
+                                '#388e3c',
+                                '#fbc02d',
+                                '#d32f2f',
+                                '#1976d2'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Cuisine Type Chart
+            const cuisineCtx = document.getElementById('cuisineTypeChart');
+            if (cuisineCtx && !cuisineCtx.chart) {
+                cuisineCtx.chart = new Chart(cuisineCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Italian', 'Chinese', 'Japanese', 'American', 'Indian'],
+                        datasets: [{
+                            label: 'Orders',
+                            data: [456, 398, 367, 342, 289],
+                            backgroundColor: '#ec1304'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

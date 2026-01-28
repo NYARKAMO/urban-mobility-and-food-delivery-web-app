@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle - SwiftRide Driver</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/driver.css">
+</head>
+<body>
+    <!-- Driver Header -->
+    <div class="driver-header">
+        <div class="driver-header-left">
+            <button class="menu-toggle" onclick="toggleDriverSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span> Driver</h2>
+        </div>
+        <div class="driver-header-right">
+            <div class="driver-status">
+                <span class="status-indicator"></span>
+                <span id="onlineStatus">Online</span>
+            </div>
+            <button class="btn-secondary" onclick="toggleOnlineStatus()">Go Offline</button>
+        </div>
+    </div>
+
+    <!-- Driver Sidebar -->
+    <div class="driver-sidebar" id="driverSidebar">
+        <nav class="driver-nav">
+            <a href="driver-dashboard.html">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="driver-rides.html">
+                <i class="fa-solid fa-route"></i> My Rides
+            </a>
+            <a href="driver-earnings.html">
+                <i class="fa-solid fa-dollar-sign"></i> Earnings
+            </a>
+            <a href="driver-profile.html">
+                <i class="fa-solid fa-user"></i> Profile
+            </a>
+            <a href="driver-vehicle.html" class="active">
+                <i class="fa-solid fa-car"></i> Vehicle
+            </a>
+            <a href="driver-ratings.html">
+                <i class="fa-solid fa-star"></i> Ratings & Reviews
+            </a>
+            <a href="driver-settings.html">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="driverLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="driver-content">
+        <div class="content-area">
+            <div class="page-header">
+                <h1><i class="fa-solid fa-car"></i> My Vehicle</h1>
+            </div>
+
+            <!-- Vehicle Information -->
+            <div class="content-card">
+                <h2>Vehicle Details</h2>
+                <form style="display: grid; gap: 1.5rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label>Make & Model</label>
+                            <input type="text" value="Toyota Camry" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Year</label>
+                            <input type="text" value="2021" required>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label>License Plate</label>
+                            <input type="text" value="ABC-123" required>
+                        </div>
+                        <div class="form-group">
+                            <label>VIN</label>
+                            <input type="text" value="1HGCV1F32LH123456" required>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label>Color</label>
+                            <input type="text" value="Silver" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Seating Capacity</label>
+                            <input type="number" value="4" required>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="button" class="btn-primary" onclick="saveVehicle()">
+                            <i class="fa-solid fa-save"></i> Save Changes
+                        </button>
+                        <button type="button" class="btn-secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Vehicle Documents -->
+            <div class="content-card">
+                <h2>Vehicle Documents</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Document</th>
+                            <th>Status</th>
+                            <th>Expiry Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Registration</td>
+                            <td><span class="status-badge completed">Verified</span></td>
+                            <td>Dec 15, 2026</td>
+                            <td><button class="btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Update</button></td>
+                        </tr>
+                        <tr>
+                            <td>Insurance</td>
+                            <td><span class="status-badge completed">Verified</span></td>
+                            <td>Aug 20, 2026</td>
+                            <td><button class="btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Update</button></td>
+                        </tr>
+                        <tr>
+                            <td>Inspection</td>
+                            <td><span class="status-badge completed">Verified</span></td>
+                            <td>Mar 10, 2027</td>
+                            <td><button class="btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Update</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS/driver.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            checkDriverAuth();
+        });
+
+        function saveVehicle() {
+            alert('Vehicle information updated successfully!');
+        }
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>

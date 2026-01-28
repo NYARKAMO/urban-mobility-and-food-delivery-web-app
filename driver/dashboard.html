@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Dashboard - SwiftRide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/driver.css">
+</head>
+<body>
+    <!-- Driver Header -->
+    <div class="driver-header">
+        <div class="driver-header-left">
+            <button class="menu-toggle" onclick="toggleDriverSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span> Driver</h2>
+        </div>
+        <div class="driver-header-right">
+            <div class="driver-status">
+                <span class="status-indicator"></span>
+                <span id="onlineStatus">Online</span>
+            </div>
+            <button class="btn-secondary" onclick="toggleOnlineStatus()">Go Offline</button>
+        </div>
+    </div>
+
+    <!-- Driver Sidebar -->
+    <div class="driver-sidebar" id="driverSidebar">
+        <nav class="driver-nav">
+            <a href="driver-dashboard.html" class="active">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="driver-rides.html">
+                <i class="fa-solid fa-route"></i> My Rides
+            </a>
+            <a href="driver-earnings.html">
+                <i class="fa-solid fa-dollar-sign"></i> Earnings
+            </a>
+            <a href="driver-profile.html">
+                <i class="fa-solid fa-user"></i> Profile
+            </a>
+            <a href="driver-vehicle.html">
+                <i class="fa-solid fa-car"></i> Vehicle
+            </a>
+            <a href="driver-ratings.html">
+                <i class="fa-solid fa-star"></i> Ratings & Reviews
+            </a>
+            <a href="driver-settings.html">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="driverLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="driver-content">
+        <div class="content-area">
+            <div class="page-header">
+                <h1><i class="fa-solid fa-chart-line"></i> Driver Dashboard</h1>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-route"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>156</h3>
+                        <p>Total Rides</p>
+                        <span class="stat-change">+12 this month</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>$2,340</h3>
+                        <p>Total Earnings</p>
+                        <span class="stat-change">+18.5% vs last month</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>4.8</h3>
+                        <p>Average Rating</p>
+                        <span class="stat-change">From 32 ratings</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>98%</h3>
+                        <p>Completion Rate</p>
+                        <span class="stat-change">Excellent performance</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="content-card">
+                <h2>Quick Actions</h2>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn-primary" onclick="startAcceptingRides()">
+                        <i class="fa-solid fa-play"></i> Start Accepting Rides
+                    </button>
+                    <button class="btn-secondary" onclick="window.location.href='driver-earnings.html'">
+                        <i class="fa-solid fa-eye"></i> View Earnings
+                    </button>
+                    <button class="btn-secondary" onclick="window.location.href='driver-rides.html'">
+                        <i class="fa-solid fa-map"></i> View All Rides
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recent Rides -->
+            <div class="content-card">
+                <h2>Recent Rides</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Ride ID</th>
+                            <th>Customer</th>
+                            <th>From - To</th>
+                            <th>Distance</th>
+                            <th>Earnings</th>
+                            <th>Rating</th>
+                            <th>Date & Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#R001</td>
+                            <td>Nadine Patricia</td>
+                            <td>Downtown Mall → Airport</td>
+                            <td>12.5 km</td>
+                            <td>$24.50</td>
+                            <td><span class="rating-badge"><i class="fa-solid fa-star"></i> 5.0</span></td>
+                            <td>Today, 2:30 PM</td>
+                        </tr>
+                        <tr>
+                            <td>#R002</td>
+                            <td>John Smith</td>
+                            <td>Central Station → Business District</td>
+                            <td>8.2 km</td>
+                            <td>$16.40</td>
+                            <td><span class="rating-badge"><i class="fa-solid fa-star"></i> 4.9</span></td>
+                            <td>Today, 1:15 PM</td>
+                        </tr>
+                        <tr>
+                            <td>#R003</td>
+                            <td>Sarah Johnson</td>
+                            <td>Shopping Center → Residential Area</td>
+                            <td>9.8 km</td>
+                            <td>$19.60</td>
+                            <td><span class="rating-badge"><i class="fa-solid fa-star"></i> 4.8</span></td>
+                            <td>Yesterday, 6:45 PM</td>
+                        </tr>
+                        <tr>
+                            <td>#R004</td>
+                            <td>Michael Brown</td>
+                            <td>Hotel → Train Station</td>
+                            <td>7.5 km</td>
+                            <td>$15.00</td>
+                            <td><span class="rating-badge"><i class="fa-solid fa-star"></i> 4.7</span></td>
+                            <td>Yesterday, 3:20 PM</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts-grid">
+                <div class="content-card">
+                    <h3>Weekly Earnings</h3>
+                    <div class="chart-container">
+                        <canvas id="earningsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Rides by Day</h3>
+                    <div class="chart-container">
+                        <canvas id="ridesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="../JS/driver.js"></script>
+    <script>
+        // Check driver authentication
+        document.addEventListener('DOMContentLoaded', function() {
+            checkDriverAuth();
+            
+            // Initialize charts
+            if (document.getElementById('earningsChart')) {
+                initDashboardCharts();
+            }
+        });
+
+        function startAcceptingRides() {
+            alert('You are now accepting rides!');
+        }
+
+        function initDashboardCharts() {
+            const earningsCtx = document.getElementById('earningsChart');
+            if (earningsCtx && !earningsCtx.chart) {
+                earningsCtx.chart = new Chart(earningsCtx.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        datasets: [{
+                            label: 'Daily Earnings',
+                            data: [45, 52, 48, 61, 55, 67, 72],
+                            borderColor: '#ec1304',
+                            backgroundColor: 'rgba(236, 19, 4, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'top' } }
+                    }
+                });
+            }
+
+            const ridesCtx = document.getElementById('ridesChart');
+            if (ridesCtx && !ridesCtx.chart) {
+                ridesCtx.chart = new Chart(ridesCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        datasets: [{
+                            label: 'Rides Completed',
+                            data: [12, 15, 10, 18, 14, 20, 21],
+                            backgroundColor: '#1976d2'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'top' } }
+                    }
+                });
+            }
+        }
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>

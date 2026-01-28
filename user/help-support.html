@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support - SwiftRide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/help-support.css">
+</head>
+<body>
+    <!-- Side Navigation -->
+    <div id="mySidenav" class="sidenav">
+        <div class="nav-header">
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="user-details">
+                    <h3>John Doe</h3>
+                    <p>+237 6XX XXX XXX</p>
+                </div>
+            </div>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        </div>
+
+        <div class="nav-menu">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="book-ride.html"><i class="fa-solid fa-car"></i> Book Ride</a>
+            <a href="order-food.html"><i class="fa-solid fa-utensils"></i> Order Food</a>
+            <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="wallet.html"><i class="fa-solid fa-wallet"></i> Wallet</a>
+            <a href="rewards.html"><i class="fa-solid fa-gift"></i> Rewards</a>
+            <a href="order-history.html"><i class="fa-solid fa-clock-rotate-left"></i> Order History</a>
+            <a href="promo-codes.html"><i class="fa-solid fa-tags"></i> Promo Codes</a>
+            <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+            <a href="help-support.html" class="active"><i class="fa-solid fa-headset"></i> Help & Support</a>
+        </div>
+
+        <div class="nav-footer">
+            <a href="#" class="logout-btn"><i class="fa-solid fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="menu-toggle" onclick="openNav()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <h1 class="page-title">Help & Support</h1>
+            <div class="header-actions">
+                <button class="action-btn" onclick="scrollToContact()">
+                    <i class="fa-solid fa-envelope"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Help & Support Content -->
+        <div class="help-content">
+            <!-- Search Bar -->
+            <section class="search-section">
+                <div class="search-container">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" id="helpSearch" placeholder="Search for help..." onkeyup="searchHelp()">
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <h2 class="section-title">Quick Actions</h2>
+                <div class="action-grid">
+                    <div class="action-card" onclick="startChat()">
+                        <div class="action-icon">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Live Chat</h4>
+                            <p>Chat with our support team</p>
+                        </div>
+                    </div>
+
+                    <div class="action-card" onclick="callSupport()">
+                        <div class="action-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Call Support</h4>
+                            <p>Speak to an agent directly</p>
+                        </div>
+                    </div>
+
+                    <div class="action-card" onclick="reportIssue()">
+                        <div class="action-icon">
+                            <i class="fa-solid fa-flag"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Report Issue</h4>
+                            <p>Report a problem or bug</p>
+                        </div>
+                    </div>
+
+                    <div class="action-card" onclick="trackOrder()">
+                        <div class="action-icon">
+                            <i class="fa-solid fa-map-marker-alt"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Track Order</h4>
+                            <p>Check your order status</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq-section">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>How do I book a ride?</h4>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>To book a ride, open the SwiftRide app and tap "Book Ride". Enter your pickup location and destination, select your preferred ride type, and confirm your booking. You'll see driver details and can track your ride in real-time.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>How do I order food?</h4>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Tap "Order Food" from the main menu. Browse restaurants, select your items, add them to cart, and proceed to checkout. You can track your order and communicate with the restaurant through the app.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>How do I add money to my wallet?</h4>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Go to the Wallet section, tap "Add Money", enter the amount you want to add, and select your payment method. The money will be instantly credited to your SwiftRide wallet for easy payments.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>How do I earn reward points?</h4>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You earn points for every ride and food order. Complete rides, leave reviews, refer friends, and participate in special promotions to earn bonus points. Check the Rewards section for your current balance and available rewards.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>How do I apply a promo code?</h4>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Go to Promo Codes section, enter your promo code, and tap "Add Code". The code will be saved to your account and automatically applied to eligible orders during checkout.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>What should I do if my order is delayed?</h4>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>If your order is running late, you can track it in real-time. Contact the driver/restaurant through the app, or reach out to our support team for assistance. We may offer compensation for significant delays.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>How do I update my payment method?</h4>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Go to Settings > Payment Settings > Default Payment Method. You can add new cards, update existing ones, or change your default payment option from the Wallet section as well.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>Is my payment information secure?</h4>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we use industry-standard encryption and security measures to protect your payment information. We never store full card details on our servers and comply with PCI DSS standards.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Support -->
+            <section id="contact" class="contact-section">
+                <h2 class="section-title">Contact Support</h2>
+                <div class="contact-container">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Live Chat</h4>
+                            <p>Chat with our support team 24/7</p>
+                            <button class="contact-btn" onclick="startChat()">Start Chat</button>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Phone Support</h4>
+                            <p>Call us at +237 2XX XXX XXX</p>
+                            <button class="contact-btn" onclick="callSupport()">Call Now</button>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Email Support</h4>
+                            <p>Get help via email within 24 hours</p>
+                            <button class="contact-btn" onclick="emailSupport()">Send Email</button>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Visit Us</h4>
+                            <p>123 SwiftRide Street, Yaoundé, Cameroon</p>
+                            <button class="contact-btn" onclick="getDirections()">Get Directions</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Report Issue Form -->
+            <section class="report-section">
+                <h2 class="section-title">Report an Issue</h2>
+                <form id="reportForm" class="report-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="issueType">Issue Type</label>
+                            <select id="issueType" required>
+                                <option value="">Select issue type</option>
+                                <option value="ride">Ride Related</option>
+                                <option value="food">Food Order</option>
+                                <option value="payment">Payment Issue</option>
+                                <option value="app">App Problem</option>
+                                <option value="account">Account Issue</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="priority">Priority</label>
+                            <select id="priority" required>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                                <option value="urgent">Urgent</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" placeholder="Brief description of the issue" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" placeholder="Please provide detailed information about the issue..." rows="5" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="attachments">Attachments (Optional)</label>
+                        <input type="file" id="attachments" multiple accept="image/*,.pdf,.doc,.docx">
+                        <small>Upload screenshots or relevant files (max 10MB)</small>
+                    </div>
+
+                    <button type="submit" class="submit-report-btn">
+                        <i class="fa-solid fa-paper-plane"></i> Submit Report
+                    </button>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <!-- Chat Modal -->
+    <div id="chatModal" class="modal">
+        <div class="modal-content chat-modal">
+            <div class="modal-header">
+                <h3>Live Chat Support</h3>
+                <span class="close-modal" onclick="closeChatModal()">&times;</span>
+            </div>
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message support-message">
+                        <div class="message-avatar">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <div class="message-content">
+                            <p>Hi! I'm here to help you. How can I assist you today?</p>
+                            <span class="message-time">Just now</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKeyPress(event)">
+                    <button onclick="sendMessage()">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/help-support.js"></script>
+</body>
+</html>

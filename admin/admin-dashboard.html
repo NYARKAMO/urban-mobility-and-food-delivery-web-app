@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - SwiftRide</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../favicon_io/site.webmanifest">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="admin-header-left">
+            <button class="menu-toggle" onclick="toggleAdminSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span> Admin</h2>
+        </div>
+        <div class="admin-header-right">
+            <div class="admin-notifications">
+                <i class="fa-solid fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="admin-user">
+                <img src="../nadine.jpeg" alt="Admin Avatar" class="admin-avatar">
+                <span>Admin User</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Sidebar -->
+    <div class="admin-sidebar" id="adminSidebar">
+        <nav class="admin-nav">
+            <a href="admin-dashboard.html" class="active">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="admin-users.html">
+                <i class="fa-solid fa-users"></i> Users
+            </a>
+            <a href="admin-drivers.html">
+                <i class="fa-solid fa-car"></i> Drivers
+            </a>
+            <a href="admin-rides.html">
+                <i class="fa-solid fa-route"></i> Rides
+            </a>
+            <a href="admin-orders.html">
+                <i class="fa-solid fa-utensils"></i> Orders
+            </a>
+            <a href="admin-restaurants.html">
+                <i class="fa-solid fa-store"></i> Restaurants
+            </a>
+            <a href="admin-analytics.html">
+                <i class="fa-solid fa-chart-bar"></i> Analytics
+            </a>
+            <a href="admin-settings.html">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="adminLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-content">
+        <div class="dashboard-header">
+            <h1>Dashboard Overview</h1>
+            <div class="date-range">
+                <input type="date" id="startDate" value="2024-01-01">
+                <span>to</span>
+                <input type="date" id="endDate" value="2024-01-27">
+                <button class="btn-primary" onclick="updateDashboard()">Update</button>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="totalUsers">1,234</h3>
+                    <p>Total Users</p>
+                    <span class="stat-change positive">+12%</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-car"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="activeDrivers">156</h3>
+                    <p>Active Drivers</p>
+                    <span class="stat-change positive">+8%</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-route"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="totalRides">2,847</h3>
+                    <p>Total Rides</p>
+                    <span class="stat-change positive">+15%</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="totalOrders">1,923</h3>
+                    <p>Food Orders</p>
+                    <span class="stat-change positive">+22%</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="totalRevenue">$45,678</h3>
+                    <p>Revenue</p>
+                    <span class="stat-change positive">+18%</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="avgRating">4.7</h3>
+                    <p>Avg Rating</p>
+                    <span class="stat-change neutral">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <div class="chart-container">
+                <h3>Rides & Orders Over Time</h3>
+                <canvas id="ridesOrdersChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3>Revenue Breakdown</h3>
+                <canvas id="revenueChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="recent-activity">
+            <h3>Recent Activity</h3>
+            <div class="activity-list">
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+                    <div class="activity-content">
+                        <p>New user registered: john.doe@email.com</p>
+                        <span>2 minutes ago</span>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <div class="activity-content">
+                        <p>Ride completed: Downtown to Airport</p>
+                        <span>5 minutes ago</span>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <div class="activity-content">
+                        <p>Order placed: Pizza Palace - $24.99</p>
+                        <span>8 minutes ago</span>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="activity-content">
+                        <p>Driver rated: 5 stars by customer</p>
+                        <span>12 minutes ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../JS/admin.js"></script>
+</body>
+</html>

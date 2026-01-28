@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Dashboard - SwiftRide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/restaurant.css">
+</head>
+<body>
+    <!-- Restaurant Header -->
+    <div class="restaurant-header">
+        <div class="restaurant-header-left">
+            <button class="menu-toggle" onclick="toggleRestaurantSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-utensils"></i> Swift<span style="color: #ff6f00;">Ride</span> Restaurant</h2>
+        </div>
+        <div class="restaurant-header-right">
+            <div class="restaurant-status">
+                <span class="status-indicator"></span>
+                <span id="restaurantStatus">Open</span>
+            </div>
+            <button class="btn-secondary" onclick="toggleRestaurantStatus()">Close Restaurant</button>
+        </div>
+    </div>
+
+    <!-- Restaurant Sidebar -->
+    <div class="restaurant-sidebar" id="restaurantSidebar">
+        <nav class="restaurant-nav">
+            <a href="restaurant-dashboard.html" class="active">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="restaurant-orders.html">
+                <i class="fa-solid fa-utensils"></i> Orders
+            </a>
+            <a href="restaurant-menu.html">
+                <i class="fa-solid fa-list"></i> Menu
+            </a>
+            <a href="restaurant-earnings.html">
+                <i class="fa-solid fa-dollar-sign"></i> Earnings
+            </a>
+            <a href="restaurant-profile.html">
+                <i class="fa-solid fa-store"></i> Restaurant Info
+            </a>
+            <a href="restaurant-analytics.html">
+                <i class="fa-solid fa-chart-bar"></i> Analytics
+            </a>
+            <a href="restaurant-settings.html">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="restaurantLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="restaurant-content">
+        <div class="content-area">
+            <div class="page-header">
+                <h1><i class="fa-solid fa-chart-line"></i> Restaurant Dashboard</h1>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>245</h3>
+                        <p>Total Orders</p>
+                        <span class="stat-change">+32 this month</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>$12,450</h3>
+                        <p>Total Revenue</p>
+                        <span class="stat-change">+18.5% vs last month</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>4.5</h3>
+                        <p>Average Rating</p>
+                        <span class="stat-change">From 87 reviews</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-percentage"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>$1,245</h3>
+                        <p>Platform Commission (10%)</p>
+                        <span class="stat-change">Due at month end</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="content-card">
+                <h2>Quick Actions</h2>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn-primary" onclick="window.location.href='restaurant-orders.html'">
+                        <i class="fa-solid fa-clock"></i> View Pending Orders
+                    </button>
+                    <button class="btn-secondary" onclick="window.location.href='restaurant-menu.html'">
+                        <i class="fa-solid fa-pen"></i> Manage Menu
+                    </button>
+                    <button class="btn-secondary" onclick="window.location.href='restaurant-profile.html'">
+                        <i class="fa-solid fa-pen"></i> Edit Restaurant Info
+                    </button>
+                </div>
+            </div>
+
+            <!-- Add Meals/Items Section -->
+            <div class="content-card" style="background: linear-gradient(135deg, rgba(255, 111, 0, 0.05) 0%, rgba(255, 111, 0, 0.02) 100%); border-left: 4px solid #ff6f00;">
+                <h2><i class="fa-solid fa-plus-circle"></i> Quick Add Menu Items</h2>
+                <p style="color: #666; margin-bottom: 1.5rem;">Add new menu items directly from your dashboard</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <div style="padding: 1rem; background: white; border: 1px solid #ddd; border-radius: 8px;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Item Name</label>
+                        <input type="text" id="quickItemName" placeholder="e.g., Garlic Bread" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+                    </div>
+                    <div style="padding: 1rem; background: white; border: 1px solid #ddd; border-radius: 8px;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Category</label>
+                        <select id="quickItemCategory" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+                            <option value="">Select Category</option>
+                            <option value="appetizers">Appetizers</option>
+                            <option value="mains">Main Courses</option>
+                            <option value="desserts">Desserts</option>
+                            <option value="beverages">Beverages</option>
+                        </select>
+                    </div>
+                    <div style="padding: 1rem; background: white; border: 1px solid #ddd; border-radius: 8px;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Price ($)</label>
+                        <input type="number" id="quickItemPrice" placeholder="9.99" min="0" step="0.01" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+                    </div>
+                    <div style="padding: 1rem; background: white; border: 1px solid #ddd; border-radius: 8px;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Stock Quantity</label>
+                        <input type="number" id="quickItemStock" placeholder="20" min="0" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+                    </div>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn-primary" onclick="addQuickMenuItem()" style="flex: 1; min-width: 150px;">
+                        <i class="fa-solid fa-plus"></i> Add Item
+                    </button>
+                    <button class="btn-secondary" onclick="window.location.href='restaurant-menu.html'" style="flex: 1; min-width: 150px;">
+                        <i class="fa-solid fa-list"></i> View All Items
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recent Orders -->
+            <div class="content-card">
+                <h2>Recent Orders</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Items</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#O001</td>
+                            <td>Nadine Patricia</td>
+                            <td>Margherita Pizza × 2, Garlic Bread</td>
+                            <td>$35.97</td>
+                            <td><span class="status-badge completed">Delivered</span></td>
+                            <td>Today, 7:45 PM</td>
+                        </tr>
+                        <tr>
+                            <td>#O002</td>
+                            <td>John Smith</td>
+                            <td>Caesar Salad, Pasta Carbonara</td>
+                            <td>$28.50</td>
+                            <td><span class="status-badge out-for-delivery">Out for Delivery</span></td>
+                            <td>Today, 6:30 PM</td>
+                        </tr>
+                        <tr>
+                            <td>#O003</td>
+                            <td>Sarah Johnson</td>
+                            <td>Pepperoni Pizza × 1, Wings</td>
+                            <td>$32.40</td>
+                            <td><span class="status-badge preparing">Preparing</span></td>
+                            <td>Today, 5:15 PM</td>
+                        </tr>
+                        <tr>
+                            <td>#O004</td>
+                            <td>Michael Brown</td>
+                            <td>Vegetarian Pizza, Drinks</td>
+                            <td>$24.99</td>
+                            <td><span class="status-badge pending">Pending</span></td>
+                            <td>Today, 4:00 PM</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts-grid">
+                <div class="content-card">
+                    <h3>Daily Orders</h3>
+                    <div class="chart-container">
+                        <canvas id="dailyOrdersChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Weekly Revenue</h3>
+                    <div class="chart-container">
+                        <canvas id="weeklyRevenueChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="../JS/restaurant.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            checkRestaurantAuth();
+            
+            // Initialize charts
+            if (document.getElementById('dailyOrdersChart')) {
+                initDashboardCharts();
+            }
+        });
+
+        function addQuickMenuItem() {
+            const name = document.getElementById('quickItemName').value.trim();
+            const category = document.getElementById('quickItemCategory').value;
+            const price = document.getElementById('quickItemPrice').value;
+            const stock = document.getElementById('quickItemStock').value;
+
+            if (!name || !category || !price || !stock) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Show success message
+            alert(`Item "${name}" added successfully!`);
+
+            // Clear form
+            document.getElementById('quickItemName').value = '';
+            document.getElementById('quickItemCategory').value = '';
+            document.getElementById('quickItemPrice').value = '';
+            document.getElementById('quickItemStock').value = '';
+
+            // Optionally navigate to menu page
+            setTimeout(() => {
+                window.location.href = 'restaurant-menu.html';
+            }, 500);
+        }
+
+        function initDashboardCharts() {
+            const ordersCtx = document.getElementById('dailyOrdersChart');
+            if (ordersCtx && !ordersCtx.chart) {
+                ordersCtx.chart = new Chart(ordersCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        datasets: [{
+                            label: 'Orders',
+                            data: [28, 35, 32, 42, 38, 48, 45],
+                            backgroundColor: '#ff6f00'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'top' } }
+                    }
+                });
+            }
+
+            const revenueCtx = document.getElementById('weeklyRevenueChart');
+            if (revenueCtx && !revenueCtx.chart) {
+                revenueCtx.chart = new Chart(revenueCtx.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        datasets: [{
+                            label: 'Revenue',
+                            data: [420, 525, 480, 630, 570, 720, 675],
+                            borderColor: '#ff6f00',
+                            backgroundColor: 'rgba(255, 111, 0, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'top' } }
+                    }
+                });
+            }
+        }
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>

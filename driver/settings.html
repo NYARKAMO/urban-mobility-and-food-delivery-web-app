@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - SwiftRide Driver</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/driver.css">
+</head>
+<body>
+    <!-- Driver Header -->
+    <div class="driver-header">
+        <div class="driver-header-left">
+            <button class="menu-toggle" onclick="toggleDriverSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span> Driver</h2>
+        </div>
+        <div class="driver-header-right">
+            <div class="driver-status">
+                <span class="status-indicator"></span>
+                <span id="onlineStatus">Online</span>
+            </div>
+            <button class="btn-secondary" onclick="toggleOnlineStatus()">Go Offline</button>
+        </div>
+    </div>
+
+    <!-- Driver Sidebar -->
+    <div class="driver-sidebar" id="driverSidebar">
+        <nav class="driver-nav">
+            <a href="driver-dashboard.html">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="driver-rides.html">
+                <i class="fa-solid fa-route"></i> My Rides
+            </a>
+            <a href="driver-earnings.html">
+                <i class="fa-solid fa-dollar-sign"></i> Earnings
+            </a>
+            <a href="driver-profile.html">
+                <i class="fa-solid fa-user"></i> Profile
+            </a>
+            <a href="driver-vehicle.html">
+                <i class="fa-solid fa-car"></i> Vehicle
+            </a>
+            <a href="driver-ratings.html">
+                <i class="fa-solid fa-star"></i> Ratings & Reviews
+            </a>
+            <a href="driver-settings.html" class="active">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="driverLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="driver-content">
+        <div class="content-area">
+            <div class="page-header">
+                <h1><i class="fa-solid fa-gear"></i> Settings</h1>
+            </div>
+
+            <!-- Notification Settings -->
+            <div class="content-card">
+                <h2>Notification Settings</h2>
+                <div style="display: grid; gap: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border: 1px solid #e0e0e0; border-radius: 6px;">
+                        <div>
+                            <strong>Ride Requests</strong>
+                            <p style="color: #999; font-size: 0.9rem;">Get notified when new ride requests arrive</p>
+                        </div>
+                        <input type="checkbox" checked style="width: 24px; height: 24px; cursor: pointer;">
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border: 1px solid #e0e0e0; border-radius: 6px;">
+                        <div>
+                            <strong>Ride Updates</strong>
+                            <p style="color: #999; font-size: 0.9rem;">Get notified about ride status updates</p>
+                        </div>
+                        <input type="checkbox" checked style="width: 24px; height: 24px; cursor: pointer;">
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border: 1px solid #e0e0e0; border-radius: 6px;">
+                        <div>
+                            <strong>Earnings Alerts</strong>
+                            <p style="color: #999; font-size: 0.9rem;">Get weekly earnings and payout notifications</p>
+                        </div>
+                        <input type="checkbox" checked style="width: 24px; height: 24px; cursor: pointer;">
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border: 1px solid #e0e0e0; border-radius: 6px;">
+                        <div>
+                            <strong>Reviews Notification</strong>
+                            <p style="color: #999; font-size: 0.9rem;">Get notified when customers leave reviews</p>
+                        </div>
+                        <input type="checkbox" checked style="width: 24px; height: 24px; cursor: pointer;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preferences -->
+            <div class="content-card">
+                <h2>Preferences</h2>
+                <form style="display: grid; gap: 1.5rem;">
+                    <div class="form-group">
+                        <label>Language</label>
+                        <select style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px;">
+                            <option value="en">English</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Currency</label>
+                        <select style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px;">
+                            <option value="usd">USD ($)</option>
+                            <option value="eur">EUR (€)</option>
+                            <option value="gbp">GBP (£)</option>
+                        </select>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="button" class="btn-primary" onclick="saveSettings()">
+                            <i class="fa-solid fa-save"></i> Save Preferences
+                        </button>
+                        <button type="button" class="btn-secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Danger Zone -->
+            <div class="content-card" style="border-left: 4px solid #d32f2f;">
+                <h2 style="color: #d32f2f;">Account Actions</h2>
+                <div style="display: grid; gap: 1rem;">
+                    <button class="btn-danger" onclick="deactivateAccount()">
+                        <i class="fa-solid fa-ban"></i> Deactivate Account
+                    </button>
+                    <p style="color: #999; font-size: 0.9rem;">Deactivating your account will temporarily disable it. You can reactivate it later.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS/driver.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            checkDriverAuth();
+        });
+
+        function saveSettings() {
+            alert('Settings saved successfully!');
+        }
+
+        function deactivateAccount() {
+            if (confirm('Are you sure you want to deactivate your account? You can reactivate it later.')) {
+                alert('Account deactivated. You can reactivate it anytime from the login page.');
+            }
+        }
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>

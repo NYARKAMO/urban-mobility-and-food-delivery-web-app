@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - SwiftRide Admin</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../favicon_io/site.webmanifest">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="admin-header-left">
+            <button class="menu-toggle" onclick="toggleAdminSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span> Admin</h2>
+        </div>
+        <div class="admin-header-right">
+            <div class="admin-notifications">
+                <i class="fa-solid fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="admin-user">
+                <img src="../nadine.jpeg" alt="Admin Avatar" class="admin-avatar">
+                <span>Admin User</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Sidebar -->
+    <div class="admin-sidebar" id="adminSidebar">
+        <nav class="admin-nav">
+            <a href="admin-dashboard.html">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="admin-users.html" class="active">
+                <i class="fa-solid fa-users"></i> Users
+            </a>
+            <a href="admin-drivers.html">
+                <i class="fa-solid fa-car"></i> Drivers
+            </a>
+            <a href="admin-rides.html">
+                <i class="fa-solid fa-route"></i> Rides
+            </a>
+            <a href="admin-orders.html">
+                <i class="fa-solid fa-utensils"></i> Orders
+            </a>
+            <a href="admin-restaurants.html">
+                <i class="fa-solid fa-store"></i> Restaurants
+            </a>
+            <a href="admin-analytics.html">
+                <i class="fa-solid fa-chart-bar"></i> Analytics
+            </a>
+            <a href="admin-settings.html">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="adminLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-content">
+        <div class="data-table-container">
+            <div class="table-header">
+                <h3>User Management</h3>
+                <div class="search-filter">
+                    <input type="text" class="search-input" placeholder="Search users..." id="userSearch">
+                    <select class="filter-select" id="userStatusFilter">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="suspended">Suspended</option>
+                    </select>
+                    <button class="btn-primary" onclick="exportUsers()">Export</button>
+                </div>
+            </div>
+
+            <table class="data-table" id="usersTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                        <th>Join Date</th>
+                        <th>Total Rides</th>
+                        <th>Total Orders</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>Nadine Patricia</td>
+                        <td>nadine@mail.com</td>
+                        <td>+1 234 567 8900</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                        <td>2024-01-15</td>
+                        <td>24</td>
+                        <td>12</td>
+                        <td class="action-buttons">
+                            <button class="btn-secondary" onclick="viewUser(1)">View</button>
+                            <button class="btn-secondary" onclick="editUser(1)">Edit</button>
+                            <button class="btn-danger" onclick="suspendUser(1)">Suspend</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>John Doe</td>
+                        <td>john.doe@email.com</td>
+                        <td>+1 234 567 8901</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                        <td>2024-01-20</td>
+                        <td>18</td>
+                        <td>8</td>
+                        <td class="action-buttons">
+                            <button class="btn-secondary" onclick="viewUser(2)">View</button>
+                            <button class="btn-secondary" onclick="editUser(2)">Edit</button>
+                            <button class="btn-danger" onclick="suspendUser(2)">Suspend</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>Jane Smith</td>
+                        <td>jane.smith@email.com</td>
+                        <td>+1 234 567 8902</td>
+                        <td><span class="status-badge status-inactive">Inactive</span></td>
+                        <td>2024-01-10</td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td class="action-buttons">
+                            <button class="btn-secondary" onclick="viewUser(3)">View</button>
+                            <button class="btn-secondary" onclick="editUser(3)">Edit</button>
+                            <button class="btn-secondary" onclick="activateUser(3)">Activate</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>004</td>
+                        <td>Mike Johnson</td>
+                        <td>mike.j@email.com</td>
+                        <td>+1 234 567 8903</td>
+                        <td><span class="status-badge status-suspended">Suspended</span></td>
+                        <td>2024-01-05</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td class="action-buttons">
+                            <button class="btn-secondary" onclick="viewUser(4)">View</button>
+                            <button class="btn-secondary" onclick="editUser(4)">Edit</button>
+                            <button class="btn-secondary" onclick="activateUser(4)">Activate</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- User Details Modal (Hidden by default) -->
+        <div id="userModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>User Details</h3>
+                    <span class="close" onclick="closeModal()">&times;</span>
+                </div>
+                <div class="modal-body" id="userDetails">
+                    <!-- User details will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS/admin.js"></script>
+</body>
+</html>

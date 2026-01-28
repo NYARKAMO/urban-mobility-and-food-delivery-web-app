@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ratings & Reviews - SwiftRide Driver</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/driver.css">
+</head>
+<body>
+    <!-- Driver Header -->
+    <div class="driver-header">
+        <div class="driver-header-left">
+            <button class="menu-toggle" onclick="toggleDriverSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2><i class="fa-solid fa-taxi"></i> Swift<span style="color: #ec1304;">Ride</span> Driver</h2>
+        </div>
+        <div class="driver-header-right">
+            <div class="driver-status">
+                <span class="status-indicator"></span>
+                <span id="onlineStatus">Online</span>
+            </div>
+            <button class="btn-secondary" onclick="toggleOnlineStatus()">Go Offline</button>
+        </div>
+    </div>
+
+    <!-- Driver Sidebar -->
+    <div class="driver-sidebar" id="driverSidebar">
+        <nav class="driver-nav">
+            <a href="driver-dashboard.html">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="driver-rides.html">
+                <i class="fa-solid fa-route"></i> My Rides
+            </a>
+            <a href="driver-earnings.html">
+                <i class="fa-solid fa-dollar-sign"></i> Earnings
+            </a>
+            <a href="driver-profile.html">
+                <i class="fa-solid fa-user"></i> Profile
+            </a>
+            <a href="driver-vehicle.html">
+                <i class="fa-solid fa-car"></i> Vehicle
+            </a>
+            <a href="driver-ratings.html" class="active">
+                <i class="fa-solid fa-star"></i> Ratings & Reviews
+            </a>
+            <a href="driver-settings.html">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+            <hr>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-left"></i> Back to App
+            </a>
+            <a href="#" onclick="driverLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="driver-content">
+        <div class="content-area">
+            <div class="page-header">
+                <h1><i class="fa-solid fa-star"></i> Ratings & Reviews</h1>
+            </div>
+
+            <!-- Rating Summary -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>4.8</h3>
+                        <p>Average Rating</p>
+                        <span class="stat-change">From 32 reviews</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>31</h3>
+                        <p>5-Star Ratings</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-message"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>1</h3>
+                        <p>Total Reviews</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Reviews -->
+            <div class="content-card">
+                <h2>Recent Reviews</h2>
+                <div style="display: grid; gap: 1.5rem;">
+                    <div style="border: 1px solid #e0e0e0; padding: 1.5rem; border-radius: 8px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                            <div>
+                                <strong>Nadine Patricia</strong>
+                                <div style="color: #999; font-size: 0.9rem;">Today, 2:45 PM</div>
+                            </div>
+                            <div style="color: #f57f17; font-size: 1.2rem;">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                        <p style="color: #666;">Great driver! Safe, courteous, and arrived on time. Will definitely use the service again.</p>
+                    </div>
+
+                    <div style="border: 1px solid #e0e0e0; padding: 1.5rem; border-radius: 8px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                            <div>
+                                <strong>John Smith</strong>
+                                <div style="color: #999; font-size: 0.9rem;">Yesterday, 1:20 PM</div>
+                            </div>
+                            <div style="color: #f57f17; font-size: 1.2rem;">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-star"></i>
+                            </div>
+                        </div>
+                        <p style="color: #666;">Good experience overall. Very professional and knew the routes well.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rating Distribution -->
+            <div class="content-card">
+                <h2>Rating Distribution</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Rating</th>
+                            <th>Count</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>5 Stars</td>
+                            <td>31</td>
+                            <td><div style="background: #e8f5e9; padding: 0.4rem; border-radius: 4px; text-align: center;">96.88%</div></td>
+                        </tr>
+                        <tr>
+                            <td>4 Stars</td>
+                            <td>1</td>
+                            <td><div style="background: #fff3e0; padding: 0.4rem; border-radius: 4px; text-align: center;">3.12%</div></td>
+                        </tr>
+                        <tr>
+                            <td>3 Stars</td>
+                            <td>0</td>
+                            <td><div style="background: #f5f5f5; padding: 0.4rem; border-radius: 4px; text-align: center;">0%</div></td>
+                        </tr>
+                        <tr>
+                            <td>2 Stars</td>
+                            <td>0</td>
+                            <td><div style="background: #f5f5f5; padding: 0.4rem; border-radius: 4px; text-align: center;">0%</div></td>
+                        </tr>
+                        <tr>
+                            <td>1 Stars</td>
+                            <td>0</td>
+                            <td><div style="background: #f5f5f5; padding: 0.4rem; border-radius: 4px; text-align: center;">0%</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS/driver.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            checkDriverAuth();
+        });
+    </script>    <script src="js/script.js"></script></body>
+</html>
