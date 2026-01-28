@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Login - SwiftRide</title>
+    <title>Driver Login - SwiftRide</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link rel="stylesheet" href="css/auth.css">
     <style>
@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ff6f00 0%, #e65100 100%);
+            background: linear-gradient(135deg, #ec1304 0%, #c41103 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -34,7 +34,7 @@
         }
 
         .login-header {
-            background: linear-gradient(135deg, #ff6f00 0%, #e65100 100%);
+            background: linear-gradient(135deg, #ec1304 0%, #c41103 100%);
             color: white;
             padding: 2rem 1.5rem;
             text-align: center;
@@ -81,8 +81,8 @@
 
         .form-group input:focus {
             outline: none;
-            border-color: #ff6f00;
-            box-shadow: 0 0 0 3px rgba(255, 111, 0, 0.1);
+            border-color: #ec1304;
+            box-shadow: 0 0 0 3px rgba(236, 19, 4, 0.1);
         }
 
         .password-toggle {
@@ -124,7 +124,7 @@
         }
 
         .checkbox-group a {
-            color: #ff6f00;
+            color: #ec1304;
             text-decoration: none;
             font-size: 0.9rem;
         }
@@ -136,7 +136,7 @@
         .login-btn {
             width: 100%;
             padding: 0.85rem;
-            background: linear-gradient(135deg, #ff6f00 0%, #e65100 100%);
+            background: linear-gradient(135deg, #ec1304 0%, #c41103 100%);
             color: white;
             border: none;
             border-radius: 6px;
@@ -152,7 +152,7 @@
 
         .login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 111, 0, 0.4);
+            box-shadow: 0 5px 20px rgba(236, 19, 4, 0.4);
         }
 
         .login-btn:disabled {
@@ -208,7 +208,7 @@
         }
 
         .login-footer a {
-            color: #ff6f00;
+            color: #ec1304;
             text-decoration: none;
             font-weight: 600;
         }
@@ -248,9 +248,9 @@
         <!-- Login Header -->
         <div class="login-header">
             <h1>
-                <i class="fa-solid fa-utensils"></i> SwiftRide Restaurant
+                <i class="fa-solid fa-car"></i> SwiftRide Driver
             </h1>
-            <p>Manage your orders and menu</p>
+            <p>Manage your rides and earnings</p>
         </div>
 
         <!-- Login Content -->
@@ -263,28 +263,28 @@
             <!-- Demo Credentials -->
             <div class="demo-credentials">
                 <h3><i class="fa-solid fa-circle-info"></i> Demo Credentials</h3>
-                <p><strong>Email:</strong> restaurant@swiftride.com</p>
-                <p><strong>Password:</strong> restaurant123</p>
+                <p><strong>Email:</strong> driver@swiftride.com</p>
+                <p><strong>Password:</strong> driver123</p>
             </div>
 
             <!-- Login Form -->
-            <form id="restaurantLoginForm">
+            <form id="driverLoginForm">
                 <div class="form-group">
-                    <label for="restaurantEmail">Email Address</label>
-                    <input type="email" id="restaurantEmail" placeholder="Enter your email" required>
+                    <label for="driverEmail">Email Address</label>
+                    <input type="email" id="driverEmail" placeholder="Enter your email" required>
                 </div>
 
                 <div class="form-group password-toggle">
-                    <label for="restaurantPassword">Password</label>
-                    <input type="password" id="restaurantPassword" placeholder="Enter your password" required>
-                    <button type="button" onclick="togglePassword('restaurantPassword')">
+                    <label for="driverPassword">Password</label>
+                    <input type="password" id="driverPassword" placeholder="Enter your password" required>
+                    <button type="button" onclick="togglePassword('driverPassword')">
                         <i class="fa-solid fa-eye"></i>
                     </button>
                 </div>
 
                 <div class="checkbox-group">
                     <label>
-                        <input type="checkbox" id="rememberRestaurant">
+                        <input type="checkbox" id="rememberDriver">
                         Remember me
                     </label>
                     <a href="#forgot">Forgot password?</a>
@@ -298,13 +298,13 @@
 
         <!-- Login Footer -->
         <div class="login-footer">
-            <p style="margin-bottom: 1rem;">New restaurant? <a href="restaurant-signup.html">Create a restaurant account</a></p>
+            <p style="margin-bottom: 1rem;">New driver? <a href="driver-signup.html">Create a driver account</a></p>
             <p style="font-size: 0.85rem; border-top: 1px solid #e0e0e0; padding-top: 1rem; margin-top: 1rem;">
-                Not a restaurant? <a href="index.html" style="color: #ff6f00;">Return to main app</a>
+                Not interested in driving? <a href="../index.html" style="color: #ec1304;">Return to main app</a>
             </p>
         </div>
     </div>
 
-    <script src="JS/restaurant.js"></script>
+    <script src="js/driver.js"></script>
 </body>
 </html>

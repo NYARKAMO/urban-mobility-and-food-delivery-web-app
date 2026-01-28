@@ -4,7 +4,7 @@
 function checkRestaurantAuth() {
     const restaurantSession = localStorage.getItem('restaurantSession');
     if (!restaurantSession) {
-        window.location.href = '../restaurant-login.html';
+        window.location.href = 'restaurant-login.html';
     }
 }
 
@@ -30,7 +30,7 @@ function restaurantLogin(email, password, remember) {
         }
 
         // Redirect to dashboard
-        window.location.href = 'restaurant/restaurant-dashboard.html';
+        window.location.href = 'restaurant-dashboard.html';
         return true;
     }
 
@@ -42,7 +42,7 @@ function restaurantLogout() {
     if (confirm('Are you sure you want to logout?')) {
         localStorage.removeItem('restaurantSession');
         localStorage.removeItem('rememberRestaurant');
-        window.location.href = '../restaurant-login.html';
+        window.location.href = 'restaurant-login.html';
     }
 }
 

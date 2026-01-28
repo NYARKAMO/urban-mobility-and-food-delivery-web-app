@@ -30,7 +30,7 @@ function driverLogin(email, password, remember) {
         }
 
         // Redirect to dashboard
-        window.location.href = 'driver/driver-dashboard.html';
+        window.location.href = 'driver-dashboard.html';
         return true;
     }
 
@@ -42,7 +42,7 @@ function driverLogout() {
     if (confirm('Are you sure you want to logout?')) {
         localStorage.removeItem('driverSession');
         localStorage.removeItem('rememberDriver');
-        window.location.href = '../driver-login.html';
+        window.location.href = 'driver-login.html';
     }
 }
 
